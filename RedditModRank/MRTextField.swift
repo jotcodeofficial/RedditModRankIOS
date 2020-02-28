@@ -36,6 +36,7 @@ class MRTextField: UITextField {
         backgroundColor                 = .tertiarySystemBackground
         autocorrectionType              = .no
         placeholder                     = "Enter a subreddit name"
+        returnKeyType                   = .go
     }
     
 }
