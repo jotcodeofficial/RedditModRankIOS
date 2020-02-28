@@ -1,10 +1,4 @@
-//
-//  SearchVC.swift
-//  GHFollowers
-//
-//  Created by Sean Allen on 12/27/19.
-//  Copyright © 2019 Sean Allen. All rights reserved.
-//
+
 
 import UIKit
 
@@ -34,6 +28,13 @@ class SearchVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    @objc func pushModListVC() {
+        let modListVC       = ModListVC()
+        modListVC.subreddit = subredditTextField.text
+        modListVC.title     = subredditTextField.text
+        navigationController?.pushViewController(modListVC, animated: true)
+    }
+    
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +51,7 @@ class SearchVC: UIViewController {
     
     func configureTextField() {
         view.addSubview(subredditTextField)
+        subredditTextField.delegate = self
         
         NSLayoutConstraint.activate([
             subredditTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -63,11 +65,21 @@ class SearchVC: UIViewController {
     func configureCallToActionButton() {
         view.addSubview(callToActionButton)
         
+        callToActionButton.addTarget(self, action: #selector(pushModListVC), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+
+extension SearchVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushModListVC()
+        return true
     }
 }
