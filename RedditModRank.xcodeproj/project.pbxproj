@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96F737F42407F2B200E85BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F737F32407F2B200E85BB2 /* AppDelegate.swift */; };
+		96F737F62407F2B200E85BB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F737F52407F2B200E85BB2 /* SceneDelegate.swift */; };
+		96F737FE2407F2B200E85BB2 /* RedditModRank.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F737FC2407F2B200E85BB2 /* RedditModRank.xcdatamodeld */; };
+		96F738002407F2B400E85BB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F737FF2407F2B400E85BB2 /* Assets.xcassets */; };
+		96F738032407F2B400E85BB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F738012407F2B400E85BB2 /* LaunchScreen.storyboard */; };
+		96F7380B2409219F00E85BB2 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7380A2409219F00E85BB2 /* SearchVC.swift */; };
+		96F7380D240921F500E85BB2 /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7380C240921F500E85BB2 /* FavoritesListVC.swift */; };
+		96F7380F2409297D00E85BB2 /* MRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7380E2409297D00E85BB2 /* MRButton.swift */; };
+		96F7381124092D9E00E85BB2 /* MRTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381024092D9E00E85BB2 /* MRTextField.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		96F737F02407F2B200E85BB2 /* RedditModRank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditModRank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96F737F32407F2B200E85BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		96F737F52407F2B200E85BB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		96F737FD2407F2B200E85BB2 /* RedditModRank.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedditModRank.xcdatamodel; sourceTree = "<group>"; };
+		96F737FF2407F2B400E85BB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96F738022407F2B400E85BB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		96F738042407F2B400E85BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96F7380A2409219F00E85BB2 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		96F7380C240921F500E85BB2 /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
+		96F7380E2409297D00E85BB2 /* MRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRButton.swift; sourceTree = "<group>"; };
+		96F7381024092D9E00E85BB2 /* MRTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTextField.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96F737ED2407F2B200E85BB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96F737E72407F2B200E85BB2 = {
+			isa = PBXGroup;
+			children = (
+				96F737F22407F2B200E85BB2 /* RedditModRank */,
+				96F737F12407F2B200E85BB2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96F737F12407F2B200E85BB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96F737F02407F2B200E85BB2 /* RedditModRank.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96F737F22407F2B200E85BB2 /* RedditModRank */ = {
+			isa = PBXGroup;
+			children = (
+				96F737F32407F2B200E85BB2 /* AppDelegate.swift */,
+				96F737F52407F2B200E85BB2 /* SceneDelegate.swift */,
+				96F737FF2407F2B400E85BB2 /* Assets.xcassets */,
+				96F738012407F2B400E85BB2 /* LaunchScreen.storyboard */,
+				96F738042407F2B400E85BB2 /* Info.plist */,
+				96F737FC2407F2B200E85BB2 /* RedditModRank.xcdatamodeld */,
+				96F7380A2409219F00E85BB2 /* SearchVC.swift */,
+				96F7380C240921F500E85BB2 /* FavoritesListVC.swift */,
+				96F7380E2409297D00E85BB2 /* MRButton.swift */,
+				96F7381024092D9E00E85BB2 /* MRTextField.swift */,
+			);
+			path = RedditModRank;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96F737EF2407F2B200E85BB2 /* RedditModRank */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96F738072407F2B400E85BB2 /* Build configuration list for PBXNativeTarget "RedditModRank" */;
+			buildPhases = (
+				96F737EC2407F2B200E85BB2 /* Sources */,
+				96F737ED2407F2B200E85BB2 /* Frameworks */,
+				96F737EE2407F2B200E85BB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RedditModRank;
+			productName = RedditModRank;
+			productReference = 96F737F02407F2B200E85BB2 /* RedditModRank.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96F737E82407F2B200E85BB2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = JotCode;
+				TargetAttributes = {
+					96F737EF2407F2B200E85BB2 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 96F737EB2407F2B200E85BB2 /* Build configuration list for PBXProject "RedditModRank" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96F737E72407F2B200E85BB2;
+			productRefGroup = 96F737F12407F2B200E85BB2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96F737EF2407F2B200E85BB2 /* RedditModRank */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96F737EE2407F2B200E85BB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96F738032407F2B400E85BB2 /* LaunchScreen.storyboard in Resources */,
+				96F738002407F2B400E85BB2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96F737EC2407F2B200E85BB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96F7380B2409219F00E85BB2 /* SearchVC.swift in Sources */,
+				96F7381124092D9E00E85BB2 /* MRTextField.swift in Sources */,
+				96F737F42407F2B200E85BB2 /* AppDelegate.swift in Sources */,
+				96F7380D240921F500E85BB2 /* FavoritesListVC.swift in Sources */,
+				96F737FE2407F2B200E85BB2 /* RedditModRank.xcdatamodeld in Sources */,
+				96F7380F2409297D00E85BB2 /* MRButton.swift in Sources */,
+				96F737F62407F2B200E85BB2 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		96F738012407F2B400E85BB2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96F738022407F2B400E85BB2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96F738052407F2B400E85BB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		96F738062407F2B400E85BB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96F738082407F2B400E85BB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RedditModRank/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jotcode.RedditModRank;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		96F738092407F2B400E85BB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RedditModRank/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jotcode.RedditModRank;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96F737EB2407F2B200E85BB2 /* Build configuration list for PBXProject "RedditModRank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96F738052407F2B400E85BB2 /* Debug */,
+				96F738062407F2B400E85BB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96F738072407F2B400E85BB2 /* Build configuration list for PBXNativeTarget "RedditModRank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96F738082407F2B400E85BB2 /* Debug */,
+				96F738092407F2B400E85BB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96F737FC2407F2B200E85BB2 /* RedditModRank.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96F737FD2407F2B200E85BB2 /* RedditModRank.xcdatamodel */,
+			);
+			currentVersion = 96F737FD2407F2B200E85BB2 /* RedditModRank.xcdatamodel */;
+			path = RedditModRank.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 96F737E82407F2B200E85BB2 /* Project object */;
+}
