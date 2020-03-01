@@ -8,6 +8,7 @@ class SearchVC: UIViewController {
     let subredditTextField   = MRTextField()
     let callToActionButton  = MRButton(backgroundColor: .systemGreen, title: "View Mods")
 
+    var isSubredditEntered: Bool { return !subredditTextField.text!.isEmpty }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,10 @@ class SearchVC: UIViewController {
     }
     
     @objc func pushModListVC() {
+        guard isSubredditEntered else {
+            presentMRAlertOnMainThread(title: "Empty Subreddit", message: "Please  enter a subreddit to view moderators", buttonTitle: "Ok")
+            return
+        }
         let modListVC       = ModListVC()
         modListVC.subreddit = subredditTextField.text
         modListVC.title     = subredditTextField.text
