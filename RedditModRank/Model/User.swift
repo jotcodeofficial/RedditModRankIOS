@@ -8,8 +8,22 @@
 
 import Foundation
 
+private struct RawUser: Decodable {
+    var kind: String
+    var data: User
+}
+
+struct UserResponse: Decodable {
+    var user: User
+
+    init(from decoder: Decoder) throws {
+        let rawResponse = try RawUser(from: decoder)
+        user = rawResponse.data
+    }
+}
+
 struct User: Codable {
     var name: String
     var iconImg: String
-    var hasVerifiedEmail: Bool
+    //var hasVerifiedEmail: Bool
 }
