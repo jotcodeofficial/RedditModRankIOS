@@ -28,7 +28,7 @@ class ModListVC: UIViewController {
                 return
             }
             if (moderators.count <= 0) {
-                self.presentMRAlertOnMainThread(title: "Whoops", message: "This subreddit does not seem to exist, or has no moderators!", buttonTitle: "Ok")
+                self.presentMRAlertOnMainThread(title: "Whoops", message: ErrorMessage.noSubredditOrModerators.rawValue, buttonTitle: "Ok")
                 return
             }
 
