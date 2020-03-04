@@ -17,27 +17,27 @@ class NetworkManager {
         
     }
     
-    func getModerators(for subreddit: String, completed: @escaping ([Moderator]?, ErrorMessage?) -> Void) {
+    func getModerators(for subreddit: String, completed: @escaping (Result<[Moderator], ErrorMessage>) -> Void) {
         let endpoint = baseURL + "/r/\(subreddit)/about/moderators.json"
         
         guard let url = URL(string: endpoint) else {
-            completed(nil, .invalidSubredditName)
+            completed(.failure(.invalidSubredditName))
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             if let _ = error {
-                completed(nil, .unableToComplete)
+                completed(.failure(ErrorMessage.unableToComplete))
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(nil, .invalidResponse)
+                completed(.failure(ErrorMessage.invalidResponse))
                 return
             }
             
             guard let data = data else {
-                completed(nil, .invalidData)
+                completed(.failure(.invalidData))
                 return
             }
             
@@ -46,9 +46,9 @@ class NetworkManager {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let results = try decoder.decode(ModeratorResponse.self, from: data)
                 let moderators = results.moderatorList
-                completed(moderators, nil)
+                completed(.success(moderators))
             } catch {
-                completed(nil, .invalidData)
+                completed(.failure(.invalidData))
                 print(error.localizedDescription) //TODO
             }
             
@@ -57,43 +57,37 @@ class NetworkManager {
         task.resume()
     }
     
-    func getUser(for username: String, completed: @escaping (User?, ErrorMessage?) -> Void) {
+    func getUser(for username: String, completed: @escaping (Result<User, ErrorMessage>) -> Void) {
 
         let endpoint = baseURL + "/u/\(username)/about.json"
         
         guard let url = URL(string: endpoint) else {
-            completed(nil, .invalidModeratorName)
+            completed(.failure(.invalidModeratorName))
                    return
                }
                let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                print("url: \(endpoint)")
-
-                print("username \(username)")
-                print("data \(data)")
+    
                    if let _ = error {
-                    print("unable 2 compleet")
-                    completed(nil, .unableToComplete)
+                    completed(.failure(.unableToComplete))
                        return
                    }
                 
                 
                 
                     guard let response = response as? HTTPURLResponse else {
-                        print("invalid response")
-                        completed(nil, .invalidResponse)
+                        completed(.failure(.invalidResponse))
                        return
                    }
                 
             
                     if(response.statusCode == 404) {
-                        print("404")
-                        completed(nil, .userDoesNotExist)
+                        completed(.failure(.userDoesNotExist))
                         return
                     }
              
                    
                    guard let data = data else {
-                    completed(nil, .invalidData)
+                    completed(.failure(.invalidData))
                        return
                    }
                    
@@ -105,10 +99,10 @@ class NetworkManager {
                     
                       let user = result.user
                    
-                      completed(user, nil)
+                    completed(.success(user))
                   } catch {
-                      completed(nil, .invalidData)
-                      print(error.localizedDescription) //TODO
+                    completed(.failure(.invalidData))
+                      print(error.localizedDescription) // TODO
                   }
                    
                }

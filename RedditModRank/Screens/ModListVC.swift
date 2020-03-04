@@ -21,32 +21,49 @@ class ModListVC: UIViewController {
         
     
         
-        NetworkManager.shared.getModerators(for: subreddit) { (moderators, errorMessage) in
-            guard let moderators = moderators else {
-                print(errorMessage!)
-                self.presentMRAlertOnMainThread(title: "Whoops", message: errorMessage!.rawValue, buttonTitle: "Ok")
-                return
-            }
-            if (moderators.count <= 0) {
-                self.presentMRAlertOnMainThread(title: "Whoops", message: ErrorMessage.noSubredditOrModerators.rawValue, buttonTitle: "Ok")
-                return
-            }
-
-            self.simpleModerators.append(contentsOf: moderators)
+        NetworkManager.shared.getModerators(for: subreddit) { result in
             
-            self.simpleModerators.forEach { (moderator) in
-                NetworkManager.shared.getUser(for: moderator.name) { (user, errorMessage) in
-  
-                    guard let user = user else {
-                        print("RAW \(errorMessage?.rawValue)")
-                     return
-                    }
-                    print(user)
+            switch result {
+                case .success(let moderators): do {
+                    if (moderators.count <= 0) {
+                                  self.presentMRAlertOnMainThread(title: "Whoops", message: ErrorMessage.noSubredditOrModerators.rawValue, buttonTitle: "Ok")
+                                  return
+                              }
 
-                    self.finalModerators.append(user)
+                              self.simpleModerators.append(contentsOf: moderators)
+                              
+                              self.simpleModerators.forEach { (moderator) in
+                                  NetworkManager.shared.getUser(for: moderator.name) { (result) in
+                    
+                                    switch result {
+                                        case .success(let user): do {
+                                            print("User\(user)")
+                                            self.finalModerators.append(user)
+                                            
+                                        }
+                                        case .failure(let error): do {
+                                            switch error {
+                                                case .userDoesNotExist: do {
+                                                    print("Error does not exist")
+                                                }
+                                                default: do {
+                                                      self.presentMRAlertOnMainThread(title: "Whoops", message: error.rawValue, buttonTitle: "Ok")
+                                                    }
+                                            }
+                                           
+                                        }
+                                    }
 
+                                  }
+                      
+                              }
+                }
+                case .failure(let error): do {
+                    self.presentMRAlertOnMainThread(title: "Whoops", message: error.rawValue, buttonTitle: "Ok")
                 }
             }
+
+            
             
         }
   

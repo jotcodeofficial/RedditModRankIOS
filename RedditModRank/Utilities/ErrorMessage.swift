@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ErrorMessage: String {
+enum ErrorMessage: String, Error {
     case invalidModeratorName       = "This moderator name created an invalid request. Please try again."
     case invalidSubredditName       = "This subreddit name created an invalid request. Please try again."
     case unableToComplete           = "Unable to complete to complete your request. Please check your internet connection"
