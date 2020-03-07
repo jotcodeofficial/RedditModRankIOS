@@ -24,7 +24,7 @@ struct UserResponse: Decodable {
 
 struct User: Codable, Hashable {
     var name: String
-    var iconImg: String
+    var iconImg: String?
     //var hasVerifiedEmail: Bool
     
 

@@ -92,6 +92,7 @@ class ModListVC: UIViewController {
                                               print("Error does not exist")
                                           }
                                           default: do {
+                                            print(error.localizedDescription)
                                               self.presentMRAlertOnMainThread(title: "Whoops", message: error.rawValue, buttonTitle: "Ok")
                                           }
                                       }
