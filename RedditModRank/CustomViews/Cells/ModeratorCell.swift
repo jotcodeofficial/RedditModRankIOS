@@ -25,6 +25,10 @@ class ModeratorCell: UICollectionViewCell {
     
     func set(user: User) {
         usernameLabel.text = user.name
+        if let iconURL = user.iconImg {
+            avatarImageView.downloadImage(from: String(iconURL.split(separator: "?")[0]))
+        }
+        
     }
     
     private func configure() {

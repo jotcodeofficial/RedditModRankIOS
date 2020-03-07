@@ -10,6 +10,7 @@
 		96D9E72C240EF1BB00409702 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72B240EF1BB00409702 /* ErrorMessage.swift */; };
 		96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72E2412D0AA00409702 /* ModeratorCell.swift */; };
 		96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */; };
+		96D9E7332414195500409702 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7322414195500409702 /* UIHelper.swift */; };
 		96F737F42407F2B200E85BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F737F32407F2B200E85BB2 /* AppDelegate.swift */; };
 		96F737F62407F2B200E85BB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F737F52407F2B200E85BB2 /* SceneDelegate.swift */; };
 		96F737FE2407F2B200E85BB2 /* RedditModRank.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F737FC2407F2B200E85BB2 /* RedditModRank.xcdatamodeld */; };
@@ -35,6 +36,7 @@
 		96D9E72B240EF1BB00409702 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		96D9E72E2412D0AA00409702 /* ModeratorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeratorCell.swift; sourceTree = "<group>"; };
 		96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAvatarImageView.swift; sourceTree = "<group>"; };
+		96D9E7322414195500409702 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		96F737F02407F2B200E85BB2 /* RedditModRank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditModRank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F737F32407F2B200E85BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F737F52407F2B200E85BB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				96D9E72B240EF1BB00409702 /* ErrorMessage.swift */,
+				96D9E7322414195500409702 /* UIHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				96F7381D240C1C3000E85BB2 /* MRAlertVC.swift in Sources */,
 				96F738152409772700E85BB2 /* ModListVC.swift in Sources */,
 				96F73826240D86E200E85BB2 /* Moderator.swift in Sources */,
+				96D9E7332414195500409702 /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

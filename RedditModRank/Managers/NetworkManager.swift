@@ -6,11 +6,12 @@
 //  Copyright © 2020 JotCode. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     static let shared   = NetworkManager()
-    let baseURL         = "https://reddit.com"
+    private let baseURL         = "https://reddit.com"
+    let cache           = NSCache<NSString, UIImage>()
     
     // private so there can only be 1 instance ever
     private init() {
@@ -59,7 +60,7 @@ class NetworkManager {
     
     func getUser(for username: String, completed: @escaping (Result<User, ErrorMessage>) -> Void) {
 
-        let endpoint = baseURL + "/u/\(username)/about.json"
+        let endpoint = baseURL + "/user/\(username)/about.json"
         
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidModeratorName))
@@ -111,6 +112,14 @@ class NetworkManager {
     }
     
     func getSubreddit() {
+        
+    }
+    
+    func getCommentsFromUserForSubreddit() {
+        
+    }
+    
+    func getSubmissionsFromUserForSubreddit() {
         
     }
 }
