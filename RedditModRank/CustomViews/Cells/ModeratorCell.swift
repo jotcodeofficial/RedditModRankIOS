@@ -23,8 +23,8 @@ class ModeratorCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(moderator: User) {
-        usernameLabel.text = moderator.name
+    func set(user: User) {
+        usernameLabel.text = user.name
     }
     
     private func configure() {
