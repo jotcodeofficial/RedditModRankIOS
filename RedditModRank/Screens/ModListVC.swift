@@ -65,8 +65,9 @@ class ModListVC: UIViewController {
     
     
     func getModerators() {
-          NetworkManager.shared.getModerators(for: subreddit) { result in
-              
+          NetworkManager.shared.getModerators(for: subreddit) { [weak self] result in
+            guard let self = self else { return }
+            
               switch result {
                   case .success(let moderators): do {
                        if (moderators.count <= 0) {
@@ -77,32 +78,31 @@ class ModListVC: UIViewController {
                         self.simpleModerators.append(contentsOf: moderators)
                         
                         //self.simpleModerators.forEach { (moderator) in
-                    for (idx, element) in self.simpleModerators.enumerated() {
-                            NetworkManager.shared.getUser(for: element.name) { (result) in
-              
-                              switch result {
-                                  case .success(let user): do {
-                                      print("User\(user)")
-                                      self.finalModerators.append(user)
-                                      
-                                  }
-                                  case .failure(let error): do {
-                                      switch error {
-                                          case .userDoesNotExist: do {
-                                              print("Error does not exist")
-                                          }
-                                          default: do {
-                                            print(error.localizedDescription)
-                                              self.presentMRAlertOnMainThread(title: "Whoops", message: error.rawValue, buttonTitle: "Ok")
-                                          }
+                    for (idx, element) in (self.simpleModerators.enumerated()) {
+                            NetworkManager.shared.getUser(for: element.name) { [weak self] result in
+                                guard let self = self else { return }
+                                  switch result {
+                                      case .success(let user): do {
+                                          self.finalModerators.append(user)
+                                          
                                       }
-                                
+                                      case .failure(let error): do {
+                                          switch error {
+                                              case .userDoesNotExist: do {
+                                                  print("Error does not exist")
+                                              }
+                                              default: do {
+                                                print(error.localizedDescription)
+                                                  self.presentMRAlertOnMainThread(title: "Whoops", message: error.rawValue, buttonTitle: "Ok")
+                                              }
+                                          }
+                                    
+                                      }
+                             
                                   }
-                         
-                              }
-                                if idx == self.simpleModerators.endIndex-1 {
-                                  // handling the last element
-                               self.updateData()
+                                if idx == (self.simpleModerators.endIndex)-1 {
+                                    // handling the last element
+                                    self.updateData()
                                  }
                             
                             }
