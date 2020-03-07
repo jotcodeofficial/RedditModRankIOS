@@ -17,12 +17,14 @@ class ModListVC: UIViewController {
     var subreddit: String!
     var simpleModerators: [Moderator] = []
     var finalModerators: [User] = []
+    var filteredModerators: [User] = []
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, User>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         getModerators()
         configureDataSource()
@@ -90,7 +92,7 @@ class ModListVC: UIViewController {
                                   }
                                 if idx == (self.simpleModerators.endIndex)-1 {
                                     // handling the last element
-                                    self.updateData()
+                                    self.updateData(on: self.finalModerators)
                                  }
                             
                             }
@@ -116,17 +118,33 @@ class ModListVC: UIViewController {
         })
     }
     
-    func updateData() {
+    func updateData(on moderators: [User]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, User>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(finalModerators)
+        snapshot.appendItems(moderators)
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
     
     func configureSearchController() {
-        
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater   = self
+        searchController.searchBar.placeholder  = "Search for a moderator"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController         = searchController
     }
 
+}
+
+extension ModListVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            return
+        }
+        filteredModerators = finalModerators.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        updateData(on: filteredModerators)
+    }
+    
 }
