@@ -130,6 +130,7 @@ class ModListVC: UIViewController {
     func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater   = self
+        searchController.searchBar.delegate     = self
         searchController.searchBar.placeholder  = "Search for a moderator"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController         = searchController
@@ -137,7 +138,7 @@ class ModListVC: UIViewController {
 
 }
 
-extension ModListVC: UISearchResultsUpdating {
+extension ModListVC: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
@@ -145,6 +146,10 @@ extension ModListVC: UISearchResultsUpdating {
         }
         filteredModerators = finalModerators.filter { $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredModerators)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateData(on: finalModerators)
     }
     
 }
