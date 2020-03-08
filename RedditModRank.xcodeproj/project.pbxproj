@@ -11,6 +11,7 @@
 		96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72E2412D0AA00409702 /* ModeratorCell.swift */; };
 		96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */; };
 		96D9E7332414195500409702 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7322414195500409702 /* UIHelper.swift */; };
+		96D9E735241471E500409702 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E734241471E500409702 /* UserInfoVC.swift */; };
 		96F737F42407F2B200E85BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F737F32407F2B200E85BB2 /* AppDelegate.swift */; };
 		96F737F62407F2B200E85BB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F737F52407F2B200E85BB2 /* SceneDelegate.swift */; };
 		96F737FE2407F2B200E85BB2 /* RedditModRank.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F737FC2407F2B200E85BB2 /* RedditModRank.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		96D9E72E2412D0AA00409702 /* ModeratorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeratorCell.swift; sourceTree = "<group>"; };
 		96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAvatarImageView.swift; sourceTree = "<group>"; };
 		96D9E7322414195500409702 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		96D9E734241471E500409702 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 		96F737F02407F2B200E85BB2 /* RedditModRank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditModRank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F737F32407F2B200E85BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F737F52407F2B200E85BB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				96F738142409772700E85BB2 /* ModListVC.swift */,
 				96F7380A2409219F00E85BB2 /* SearchVC.swift */,
 				96F7380C240921F500E85BB2 /* FavoritesListVC.swift */,
+				96D9E734241471E500409702 /* UserInfoVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				96F738152409772700E85BB2 /* ModListVC.swift in Sources */,
 				96F73826240D86E200E85BB2 /* Moderator.swift in Sources */,
 				96D9E7332414195500409702 /* UIHelper.swift in Sources */,
+				96D9E735241471E500409702 /* UserInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

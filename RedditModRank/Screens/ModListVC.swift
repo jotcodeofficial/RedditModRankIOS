@@ -20,6 +20,7 @@ class ModListVC: UIViewController {
     var filteredModerators: [User] = []
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, User>!
+    var isSearching: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,7 @@ class ModListVC: UIViewController {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
+        collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(ModeratorCell.self, forCellWithReuseIdentifier: ModeratorCell.resuseID)
     }
@@ -138,17 +140,33 @@ class ModListVC: UIViewController {
 
 }
 
+extension ModListVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let activeArray = isSearching ? filteredModerators : finalModerators
+        let user        = activeArray[indexPath.item]
+
+   
+        let userInfoVC       = UserInfoVC()
+        userInfoVC.user = user
+        let navController = UINavigationController(rootViewController: userInfoVC)
+           
+        present(navController, animated: true)
+    }
+}
+
 extension ModListVC: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             return
         }
+        isSearching = true
         filteredModerators = finalModerators.filter { $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredModerators)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
         updateData(on: finalModerators)
     }
     
