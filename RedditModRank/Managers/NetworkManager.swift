@@ -10,7 +10,10 @@ import UIKit
 
 class NetworkManager {
     static let shared   = NetworkManager()
-    private let baseURL         = "https://reddit.com"
+    let baseURL         = "https://reddit.com"
+    let subredditOption         = "/r/"
+    let userOption              = "/user/"
+    let endSubModeratorsOption  = "/about/moderators"
     let cache           = NSCache<NSString, UIImage>()
     
     // private so there can only be 1 instance ever
@@ -61,7 +64,16 @@ class NetworkManager {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try decoder.decode(UserResponse.self, from: data)
                 
-                let user = result.user
+                var user = result.user
+                
+                // alter the users avatar image if it has styling
+                if user.iconImg!.contains("?") {
+                    
+                    if let indexEndOfPattern = user.iconImg!.range(of: "?") {
+                        let newImageURL = String(user.iconImg![..<indexEndOfPattern.lowerBound])
+                        user.iconImg = newImageURL
+                    }
+                }
                 
                 completed(.success(user))
             } catch {

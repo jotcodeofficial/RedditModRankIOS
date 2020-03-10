@@ -25,7 +25,18 @@ struct UserResponse: Decodable {
 struct User: Codable, Hashable {
     var name: String
     var iconImg: String?
-    //var hasVerifiedEmail: Bool
+    var hasVerifiedEmail: Bool?
+    var createdUtc: Int?
+    var linkKarma: Int?
+    var commentKarma: Int?
+    var isGold: Bool?
+    var verified: Bool?
+    
+    
+    init(name:String, iconImg: String) {
+        self.name = name
+        self.iconImg = iconImg
+    }
     
 
 }

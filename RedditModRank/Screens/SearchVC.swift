@@ -6,7 +6,7 @@ class SearchVC: UIViewController {
     
     let logoImageView       = UIImageView()
     let subredditTextField   = MRTextField()
-    let callToActionButton  = MRButton(backgroundColor: .systemGreen, title: "View Mods")
+    let callToActionButton  = MRButton(backgroundColor: .systemGreen, title: "Let's Go")
     
     let tempUsers: [User] = []
     

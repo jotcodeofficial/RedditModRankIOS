@@ -21,19 +21,16 @@ class ModListVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, User>!
     var isSearching: Bool = false
-    
-    private let baseURL                 = "https://reddit.com"
-    private let subredditOption         = "/r/"
-    private let userOption              = "/user/"
-    private let endSubModeratorsOption  = "/about/moderators"
+
     private var firstIterationGetModerators = true
+    private let shared = NetworkManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureSearchController()
         configureCollectionView()
-        getModerators(url: URL(string: baseURL + subredditOption + subreddit + endSubModeratorsOption)!)
+        getModerators(url: URL(string: shared.baseURL + shared.subredditOption + subreddit + shared.endSubModeratorsOption)!)
         configureDataSource()
     }
     
@@ -99,8 +96,8 @@ class ModListVC: UIViewController {
             var isThereANextPage = false
             if let newUrlId = htmlString.slice(from: leftSideOfNextPageURLValue, to: rightSideOfNextPageURLValue) {
                 isThereANextPage = true
-                print(self.baseURL + self.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
-                newUrl = URL(string: self.baseURL + self.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
+                print(self.shared.baseURL + self.shared.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
+                newUrl = URL(string: self.shared.baseURL + self.shared.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
             }
             
             // Starting the loop to collect all the usernames
@@ -167,58 +164,6 @@ class ModListVC: UIViewController {
         
         task.resume()
         
-    }
-    
-    func getUser(for username: String, completed: @escaping (Result<User, ErrorMessage>) -> Void) {
-        
-        let endpoint = baseURL + "\(userOption + username)/about.json"
-        
-        guard let url = URL(string: endpoint) else {
-            completed(.failure(.invalidModeratorName))
-            return
-        }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
-            
-            
-            
-            guard let response = response as? HTTPURLResponse else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            
-            if(response.statusCode == 404) {
-                completed(.failure(.userDoesNotExist))
-                return
-            }
-            
-            
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let result = try decoder.decode(UserResponse.self, from: data)
-                
-                let user = result.user
-                
-                completed(.success(user))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-            
-        }
-        
-        task.resume()
     }
     
     
