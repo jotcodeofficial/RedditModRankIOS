@@ -31,6 +31,7 @@ struct User: Codable, Hashable {
     var commentKarma: Int?
     var isGold: Bool?
     var verified: Bool?
+    var subreddit: SubredditArea?
     
     
     init(name:String, iconImg: String) {
@@ -39,4 +40,8 @@ struct User: Codable, Hashable {
     }
     
 
+}
+
+struct SubredditArea: Codable, Hashable {
+    var publicDescription: String?
 }
