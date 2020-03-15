@@ -10,16 +10,15 @@ import UIKit
 
 class SubredditInfoHeaderVC: UIViewController {
 
-        let avatarImageView     = MRAvatarImageView(frame: .zero)
-        let usernameLabel       = MRTitleLabel(textAlignment: .left, fontSize: 34)
-        let nameLabel           = MRSecondaryTitleLabel(fontSize: 18)
-        let locationImageView   = UIImageView()
-        let goldImageView       = UIImageView()
-        let locationLabel       = MRSecondaryTitleLabel(fontSize: 18)
-        let bioLabel            = MRBodyLabel(textAlignment: .left)
-        let commentsButton      = MRButton()
-        let linksButton         = MRButton()
-        let stackView           = UIStackView()
+        let avatarImageView             = MRAvatarImageView(frame: .zero)
+        let subredditLabel              = MRTitleLabel(textAlignment: .left, fontSize: 34)
+        let createdAtLabel              = MRSecondaryTitleLabel(fontSize: 18)
+        let subscribersIconImageView    = UIImageView()
+        let subscribersCountLabel       = MRSecondaryTitleLabel(fontSize: 18)
+        let bioLabel                    = MRBodyLabel(textAlignment: .left)
+        let commentsButton              = MRButton()
+        let linksButton                 = MRButton()
+        let stackView                   = UIStackView()
         
         var subreddit: Subreddit!
         
@@ -64,23 +63,23 @@ class SubredditInfoHeaderVC: UIViewController {
         
         func configureUIElements() {
             avatarImageView.downloadImage(from: (subreddit.communityIcon ?? "").isEmpty ? subreddit.iconImg! : subreddit.communityIcon!)
-            usernameLabel.text          = subreddit.displayName
-            nameLabel.text              = "Created " + StringHelper.convertNumberToDate(inputNumber: subreddit.createdUtc ?? 0)
-            locationLabel.text          = StringHelper.convertNumberToCommasString(inputNumber: subreddit.subscribers ?? 0)
+            subredditLabel.text          = subreddit.displayName
+            createdAtLabel.text              = "Created " + StringHelper.convertNumberToDate(inputNumber: subreddit.createdUtc ?? 0)
+            subscribersCountLabel.text          = StringHelper.convertNumberToCommasString(inputNumber: subreddit.subscribers ?? 0)
             bioLabel.text               = (subreddit.publicDescription ?? "").isEmpty ?  "No public description" : subreddit.publicDescription
             bioLabel.numberOfLines      = 3
             
-            locationImageView.image     = UIImage(systemName: SFSymbols.subscribers)
-            locationImageView.tintColor = .secondaryLabel
+            subscribersIconImageView.image     = UIImage(systemName: SFSymbols.subscribers)
+            subscribersIconImageView.tintColor = .secondaryLabel
        
         }
         
         func addSubViews() {
             view.addSubview(avatarImageView)
-            view.addSubview(usernameLabel)
-            view.addSubview(nameLabel)
-            view.addSubview(locationImageView)
-            view.addSubview(locationLabel)
+            view.addSubview(subredditLabel)
+            view.addSubview(createdAtLabel)
+            view.addSubview(subscribersIconImageView)
+            view.addSubview(subscribersCountLabel)
             view.addSubview(bioLabel)
             view.addSubview(stackView)
         }
@@ -88,7 +87,7 @@ class SubredditInfoHeaderVC: UIViewController {
         func layoutUI() {
             let padding: CGFloat            = 20
             let textImagePadding: CGFloat   = 12
-            locationImageView.translatesAutoresizingMaskIntoConstraints = false
+            subscribersIconImageView.translatesAutoresizingMaskIntoConstraints = false
             stackView.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
@@ -97,27 +96,27 @@ class SubredditInfoHeaderVC: UIViewController {
                 avatarImageView.widthAnchor.constraint(equalToConstant: 90),
                 avatarImageView.heightAnchor.constraint(equalToConstant: 90),
                 
-                usernameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
-                usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
-                usernameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-                usernameLabel.heightAnchor.constraint(equalToConstant: 38),
+                subredditLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
+                subredditLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
+                subredditLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+                subredditLabel.heightAnchor.constraint(equalToConstant: 38),
                 
                 
-                nameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor, constant: 8),
-                nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
-                nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-                nameLabel.heightAnchor.constraint(equalToConstant: 20),
+                createdAtLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor, constant: 8),
+                createdAtLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
+                createdAtLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+                createdAtLabel.heightAnchor.constraint(equalToConstant: 20),
                 
                 
-                locationImageView.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor),
-                locationImageView.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
-                locationImageView.widthAnchor.constraint(equalToConstant: 40),
-                locationImageView.heightAnchor.constraint(equalToConstant: 20),
+                subscribersIconImageView.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor),
+                subscribersIconImageView.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
+                subscribersIconImageView.widthAnchor.constraint(equalToConstant: 40),
+                subscribersIconImageView.heightAnchor.constraint(equalToConstant: 20),
                 
-                locationLabel.centerYAnchor.constraint(equalTo: locationImageView.centerYAnchor),
-                locationLabel.leadingAnchor.constraint(equalTo: locationImageView.trailingAnchor, constant: 5),
-                locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-                locationLabel.heightAnchor.constraint(equalToConstant: 20),
+                subscribersCountLabel.centerYAnchor.constraint(equalTo: subscribersIconImageView.centerYAnchor),
+                subscribersCountLabel.leadingAnchor.constraint(equalTo: subscribersIconImageView.trailingAnchor, constant: 5),
+                subscribersCountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+                subscribersCountLabel.heightAnchor.constraint(equalToConstant: 20),
                 
                 bioLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: textImagePadding),
                 bioLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
