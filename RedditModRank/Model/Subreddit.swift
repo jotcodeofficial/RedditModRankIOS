@@ -8,17 +8,31 @@
 
 import Foundation
 
-struct Subreddit: Codable {
+private struct RawSubreddit: Decodable {
+    var kind: String
+    var data: Subreddit
+}
+
+struct SubredditResponse: Decodable {
+    var subreddit: Subreddit
+
+    init(from decoder: Decoder) throws {
+        let rawResponse = try RawSubreddit(from: decoder)
+        subreddit = rawResponse.data
+    }
+}
+
+struct Subreddit: Codable, Hashable {
     var displayName: String
-    var tite: String
-    var primaryColor: String
-    var subscribers: Int
-    var quarantine: Bool
-    var advertiserCategory: String
-    var publicDescription: String
-    var communityIcon: String
-    var created: Int
-    var over18: Bool
-    var description: String
-    
+    var tite: String?
+    var primaryColor: String?
+    var subscribers: Int?
+    var quarantine: Bool?
+    var advertiserCategory: String?
+    var publicDescription: String?
+    var communityIcon: String?
+    var iconImg: String?
+    var createdUtc: Int?
+    var over18: Bool?
+    var description: String?
 }

@@ -34,4 +34,12 @@ class MRButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    func set(backgroundColor: UIColor, title: String, font: UIFont?) {
+        self.backgroundColor = backgroundColor
+        setTitle(title, for: .normal)
+        if let font = font {
+            self.titleLabel?.font = font
+        }
+    }
+    
 }

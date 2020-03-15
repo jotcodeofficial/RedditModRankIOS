@@ -16,4 +16,7 @@ enum ErrorMessage: String, Error {
     case invalidData                = "The data received from the server was invalid. Please try again."
     case userDoesNotExist           = "Username does not exist anymore, might be banned or deleted"
     case noSubredditOrModerators    = "This subreddit does not seem to exist, or has no moderators!"
+    case subredditDoesNotExist      = "This subreddit does not exist"
+    case subredditIsPrivate         = "This subreddit is private"
+    case userHasBeenSuspended       = "This user has been suspeneded"
 }

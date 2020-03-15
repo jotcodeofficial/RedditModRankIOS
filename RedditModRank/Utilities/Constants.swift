@@ -14,4 +14,9 @@ enum SFSymbols {
     static let unverified   = "xmark.shield"
     static let gold         = "star"
     static let noGold       = "star.slash"
+    static let commentKarma = "text.bubble"
+    static let linkKarma    = "text.quote"
+    static let followers    = "heart"
+    static let following    = "person.2"
+    static let subscribers    = "person.3"
 }

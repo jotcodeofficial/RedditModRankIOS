@@ -13,6 +13,7 @@ class ModListVC: UIViewController {
     enum Section {
         case main
     }
+    let network = NetworkManager.shared
     
     var subreddit: String!
     var simpleModerators: [Moderator] = []
@@ -21,6 +22,9 @@ class ModListVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, User>!
     var isSearching: Bool = false
+    var subredditData: Subreddit!// TODO
+    
+    let subredditStatsView         = UIView()
 
     private var firstIterationGetModerators = true
     private let shared = NetworkManager.shared
@@ -28,16 +32,45 @@ class ModListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureSubredditStatsView()
         configureSearchController()
         configureCollectionView()
+        loadSubreddit(subreddit: subreddit)
         getModerators(url: URL(string: shared.baseURL + shared.subredditOption + subreddit + shared.endSubModeratorsOption)!)
         configureDataSource()
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    private func configureSubredditStatsView() {
+        
+        view.addSubview(subredditStatsView)
+        subredditStatsView.layer.cornerRadius = 18
+        subredditStatsView.backgroundColor = .secondarySystemBackground
+        subredditStatsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let padding: CGFloat    = 20
+        
+        NSLayoutConstraint.activate([
+            
+            subredditStatsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            subredditStatsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            subredditStatsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            subredditStatsView.heightAnchor.constraint(equalToConstant: 250),
+        
+        ])
+    }
+    
+    func add(childVC: UIViewController, to containerView: UIView) {
+        addChild(childVC)
+        containerView.addSubview(childVC.view)
+        childVC.view.frame = containerView.bounds
+        childVC.didMove(toParent: self)
     }
     
     
@@ -47,13 +80,45 @@ class ModListVC: UIViewController {
     }
     
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
+
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(ModeratorCell.self, forCellWithReuseIdentifier: ModeratorCell.resuseID)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            collectionView.topAnchor.constraint(equalTo: subredditStatsView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        
+        ])
     }
+    
+    func loadSubreddit(subreddit: String) {
+        network.getSubreddit(for: subreddit) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let subreddit):
+                self.subredditData = subreddit
+                DispatchQueue.main.async {
+                    self.add(childVC: SubredditInfoHeaderVC(subreddit: subreddit), to: self.subredditStatsView)
+                }
+                
+                
+            case .failure(let error):
+                self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
+    
+
     
     
     func getModerators(url: URL) {

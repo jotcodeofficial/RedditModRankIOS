@@ -31,6 +31,7 @@ struct User: Codable, Hashable {
     var commentKarma: Int?
     var isGold: Bool?
     var verified: Bool?
+    var isSuspended: Bool?
     var subreddit: SubredditArea?
     
     

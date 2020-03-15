@@ -13,9 +13,9 @@ class UserInfoVC: UIViewController {
     var user: User!
     let network = NetworkManager.shared
     
-    let headerView  = UIView()
-    let itemViewOne = UIView()
-    let itemViewTwo = UIView()
+    let headerView          = UIView()
+    let itemViewOne         = UIView()
+    var itemViews: [UIView] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,36 +34,29 @@ class UserInfoVC: UIViewController {
     }
     
     func layoutUI() {
-        view.addSubview(headerView)
-        view.addSubview(itemViewOne)
-        view.addSubview(itemViewTwo)
+        itemViews = [headerView, itemViewOne]
         
-        itemViewOne.backgroundColor = .systemRed
-        itemViewTwo.backgroundColor = .systemRed
-        
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        itemViewOne.translatesAutoresizingMaskIntoConstraints = false
-        itemViewTwo.translatesAutoresizingMaskIntoConstraints = false
-        
+        for itemView in itemViews {
+            view.addSubview(itemView)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+            
+        }
+
         let padding: CGFloat    = 20
         let itemHeight: CGFloat = 140
         
         NSLayoutConstraint.activate([
             
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             headerView.heightAnchor.constraint(equalToConstant: 180),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             itemViewOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             itemViewOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
-            
-            itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
-            itemViewTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            itemViewTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
+        
         ])
     }
     
@@ -88,11 +81,16 @@ class UserInfoVC: UIViewController {
                 print(user)
                 DispatchQueue.main.async {
                     self.add(childVC: MRUserInfoHeaderVC(user: user), to: self.headerView)
+                    self.add(childVC: KarmaItemVC(user: user), to: self.itemViewOne)
                 }
                 
-                
             case .failure(let error):
-                self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                
+                DispatchQueue.main.async {
+                    self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
             }
         }
     }
