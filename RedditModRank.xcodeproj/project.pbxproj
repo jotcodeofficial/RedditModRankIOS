@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		96D1F1A8241D1CD1001C1712 /* SubredditInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1A7241D1CD1001C1712 /* SubredditInfoHeaderVC.swift */; };
 		96D1F1AB241D382C001C1712 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1AA241D382C001C1712 /* StringHelper.swift */; };
+		96D1F1AD241DFA10001C1712 /* RemovedDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1AC241DFA10001C1712 /* RemovedDataVC.swift */; };
 		96D9E72C240EF1BB00409702 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72B240EF1BB00409702 /* ErrorMessage.swift */; };
 		96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72E2412D0AA00409702 /* ModeratorCell.swift */; };
 		96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		96D1F1A7241D1CD1001C1712 /* SubredditInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditInfoHeaderVC.swift; sourceTree = "<group>"; };
 		96D1F1AA241D382C001C1712 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		96D1F1AC241DFA10001C1712 /* RemovedDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedDataVC.swift; sourceTree = "<group>"; };
 		96D9E72B240EF1BB00409702 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		96D9E72E2412D0AA00409702 /* ModeratorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeratorCell.swift; sourceTree = "<group>"; };
 		96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAvatarImageView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				96F7380A2409219F00E85BB2 /* SearchVC.swift */,
 				96F7380C240921F500E85BB2 /* FavoritesListVC.swift */,
 				96D9E734241471E500409702 /* UserInfoVC.swift */,
+				96D1F1AC241DFA10001C1712 /* RemovedDataVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				96D9E76A241CE76000409702 /* MRItemInfoView.swift in Sources */,
 				96D9E766241BB90400409702 /* Constants.swift in Sources */,
 				96F7382A240D89DC00E85BB2 /* Subreddit.swift in Sources */,
+				96D1F1AD241DFA10001C1712 /* RemovedDataVC.swift in Sources */,
 				96F73819240C18B300E85BB2 /* MRTitleLabel.swift in Sources */,
 				96F7381F240C599500E85BB2 /* UIViewController+Ext.swift in Sources */,
 				96F7380B2409219F00E85BB2 /* SearchVC.swift in Sources */,

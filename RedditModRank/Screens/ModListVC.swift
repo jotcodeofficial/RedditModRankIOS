@@ -13,7 +13,6 @@ class ModListVC: UIViewController {
     enum Section {
         case main
     }
-    let network = NetworkManager.shared
     
     var subreddit: String!
     var simpleModerators: [Moderator] = []
@@ -27,7 +26,7 @@ class ModListVC: UIViewController {
     let subredditStatsView         = UIView()
 
     private var firstIterationGetModerators = true
-    private let shared = NetworkManager.shared
+    private let network = NetworkManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +35,7 @@ class ModListVC: UIViewController {
         configureSearchController()
         configureCollectionView()
         loadSubreddit(subreddit: subreddit)
-        getModerators(url: URL(string: shared.baseURL + shared.subredditOption + subreddit + shared.endSubModeratorsOption)!)
+        getModerators(url: URL(string: network.baseURL + network.subredditOption + subreddit + network.endSubModeratorsOption)!)
         configureDataSource()
         
     }
@@ -113,7 +112,11 @@ class ModListVC: UIViewController {
                 
                 
             case .failure(let error):
-                self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                DispatchQueue.main.async {
+                    self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                    let navVC = SearchVC()
+                    self.navigationController?.pushViewController(navVC, animated: true)
+                }
             }
         }
     }
@@ -161,8 +164,8 @@ class ModListVC: UIViewController {
             var isThereANextPage = false
             if let newUrlId = htmlString.slice(from: leftSideOfNextPageURLValue, to: rightSideOfNextPageURLValue) {
                 isThereANextPage = true
-                print(self.shared.baseURL + self.shared.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
-                newUrl = URL(string: self.shared.baseURL + self.shared.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
+                print(self.network.baseURL + self.network.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
+                newUrl = URL(string: self.network.baseURL + self.network.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
             }
             
             // Starting the loop to collect all the usernames

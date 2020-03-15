@@ -18,5 +18,5 @@ enum SFSymbols {
     static let linkKarma    = "text.quote"
     static let followers    = "heart"
     static let following    = "person.2"
-    static let subscribers    = "person.3"
+    static let subscribers  = "person.3"
 }

@@ -26,7 +26,7 @@ class NetworkManager {
     
     func getUser(for username: String, completed: @escaping (Result<User, ErrorMessage>) -> Void) {
         
-        let endpoint = baseURL + "/user/\(username)/about.json"
+        let endpoint = baseURL + userOption + username + "/about.json"
         
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidModeratorName))

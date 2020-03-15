@@ -7,6 +7,7 @@ class SearchVC: UIViewController {
     let logoImageView       = UIImageView()
     let subredditTextField   = MRTextField()
     let callToActionButton  = MRButton(backgroundColor: .systemGreen, title: "Let's Go")
+
     
     let tempUsers: [User] = []
     
@@ -33,10 +34,12 @@ class SearchVC: UIViewController {
     }
     
     @objc func pushModListVC() {
-
+        // TODO - Instead of getting the subreddit within the modlistVC we should get it here to ensure
+        // there is no errors first. Only then should be push the modlistVC and pass in the subreddit directly.
+        // This will prevent issues where the subreddit does not exist etc and have to go back to this controller, and also issues with making popups thread safe
          guard isSubredditEntered else {
-         presentMRAlertOnMainThread(title: "Empty Subreddit", message: "Please  enter a subreddit to view moderators", buttonTitle: "Ok")
-         return
+            presentMRAlertOnMainThread(title: "Empty Subreddit", message: "Please  enter a subreddit to view moderators", buttonTitle: "Ok")
+            return
          }
          let modListVC       = ModListVC()
          modListVC.subreddit = subredditTextField.text
@@ -44,14 +47,7 @@ class SearchVC: UIViewController {
          navigationController?.pushViewController(modListVC, animated: true)
 
     }
-    
 
-    
-    
-    //TODO
-
-    
-    
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
