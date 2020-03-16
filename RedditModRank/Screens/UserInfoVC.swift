@@ -15,6 +15,7 @@ class UserInfoVC: UIViewController {
     
     let headerView          = UIView()
     let itemViewOne         = UIView()
+    let dateLabel           = MRBodyLabel(textAlignment: .center)
     var itemViews: [UIView] = []
     
     override func viewDidLoad() {
@@ -34,28 +35,31 @@ class UserInfoVC: UIViewController {
     }
     
     func layoutUI() {
-        itemViews = [headerView, itemViewOne]
+        itemViews = [headerView, itemViewOne, dateLabel]
+        
+        let padding: CGFloat    = 20
+        let itemHeight: CGFloat = 140
         
         for itemView in itemViews {
             view.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
             
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            ])
         }
-
-        let padding: CGFloat    = 20
-        let itemHeight: CGFloat = 140
         
         NSLayoutConstraint.activate([
             
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             headerView.heightAnchor.constraint(equalToConstant: 180),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
-            itemViewOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            itemViewOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            dateLabel.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18),
         
         ])
     }
@@ -82,6 +86,7 @@ class UserInfoVC: UIViewController {
                 DispatchQueue.main.async {
                     self.add(childVC: MRUserInfoHeaderVC(user: user), to: self.headerView)
                     self.add(childVC: KarmaItemVC(user: user), to: self.itemViewOne)
+                    self.dateLabel.text = "Created on " + StringHelper.convertNumberToDate(inputNumber: user.createdUtc)
                 }
                 
             case .failure(let error):

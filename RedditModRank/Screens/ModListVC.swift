@@ -99,6 +99,7 @@ class ModListVC: UIViewController {
         ])
     }
     
+    // TODO move this to the SearchVC
     func loadSubreddit(subreddit: String) {
         network.getSubreddit(for: subreddit) { [weak self] result in
             guard let self = self else { return }
@@ -114,8 +115,7 @@ class ModListVC: UIViewController {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                    let navVC = SearchVC()
-                    self.navigationController?.pushViewController(navVC, animated: true)
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }
