@@ -30,11 +30,12 @@ class ModListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadSubreddit(subreddit: subreddit)
         configureViewController()
         configureSubredditStatsView()
         configureSearchController()
         configureCollectionView()
-        loadSubreddit(subreddit: subreddit)
+        
         getModerators(url: URL(string: network.baseURL + network.subredditOption + subreddit + network.endSubModeratorsOption)!)
         configureDataSource()
         

@@ -69,7 +69,7 @@ class MRItemInfoView: UIView {
                 symbolImageView.image   = UIImage(systemName: SFSymbols.followers)
                 titleLabel.text         = "Followers"
         }
-        countLabel.text                 = StringHelper.convertNumberToCommasString(inputNumber: count)
+        countLabel.text                 = count.convertNumberToCommasString()
     }
 
 }

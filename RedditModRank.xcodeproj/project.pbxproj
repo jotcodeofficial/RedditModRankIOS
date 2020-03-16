@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		96D1F1A8241D1CD1001C1712 /* SubredditInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1A7241D1CD1001C1712 /* SubredditInfoHeaderVC.swift */; };
-		96D1F1AB241D382C001C1712 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1AA241D382C001C1712 /* StringHelper.swift */; };
 		96D1F1AD241DFA10001C1712 /* RemovedDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1AC241DFA10001C1712 /* RemovedDataVC.swift */; };
+		96D1F1AF241FBA19001C1712 /* MRInt+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1AE241FBA19001C1712 /* MRInt+Ext.swift */; };
 		96D9E72C240EF1BB00409702 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72B240EF1BB00409702 /* ErrorMessage.swift */; };
 		96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72E2412D0AA00409702 /* ModeratorCell.swift */; };
 		96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */; };
@@ -31,7 +31,7 @@
 		96F7380F2409297D00E85BB2 /* MRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7380E2409297D00E85BB2 /* MRButton.swift */; };
 		96F7381124092D9E00E85BB2 /* MRTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381024092D9E00E85BB2 /* MRTextField.swift */; };
 		96F738152409772700E85BB2 /* ModListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F738142409772700E85BB2 /* ModListVC.swift */; };
-		96F73817240C17D600E85BB2 /* MRString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73816240C17D600E85BB2 /* MRString.swift */; };
+		96F73817240C17D600E85BB2 /* MRString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73816240C17D600E85BB2 /* MRString+Ext.swift */; };
 		96F73819240C18B300E85BB2 /* MRTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73818240C18B300E85BB2 /* MRTitleLabel.swift */; };
 		96F7381B240C1A4D00E85BB2 /* MRBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381A240C1A4D00E85BB2 /* MRBodyLabel.swift */; };
 		96F7381D240C1C3000E85BB2 /* MRAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381C240C1C3000E85BB2 /* MRAlertVC.swift */; };
@@ -44,8 +44,8 @@
 
 /* Begin PBXFileReference section */
 		96D1F1A7241D1CD1001C1712 /* SubredditInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditInfoHeaderVC.swift; sourceTree = "<group>"; };
-		96D1F1AA241D382C001C1712 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		96D1F1AC241DFA10001C1712 /* RemovedDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedDataVC.swift; sourceTree = "<group>"; };
+		96D1F1AE241FBA19001C1712 /* MRInt+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MRInt+Ext.swift"; sourceTree = "<group>"; };
 		96D9E72B240EF1BB00409702 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		96D9E72E2412D0AA00409702 /* ModeratorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeratorCell.swift; sourceTree = "<group>"; };
 		96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAvatarImageView.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 		96F7380E2409297D00E85BB2 /* MRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRButton.swift; sourceTree = "<group>"; };
 		96F7381024092D9E00E85BB2 /* MRTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTextField.swift; sourceTree = "<group>"; };
 		96F738142409772700E85BB2 /* ModListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModListVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		96F73816240C17D600E85BB2 /* MRString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRString.swift; sourceTree = "<group>"; };
+		96F73816240C17D600E85BB2 /* MRString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MRString+Ext.swift"; sourceTree = "<group>"; };
 		96F73818240C18B300E85BB2 /* MRTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTitleLabel.swift; sourceTree = "<group>"; };
 		96F7381A240C1A4D00E85BB2 /* MRBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRBodyLabel.swift; sourceTree = "<group>"; };
 		96F7381C240C1C3000E85BB2 /* MRAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAlertVC.swift; sourceTree = "<group>"; };
@@ -97,7 +97,6 @@
 				96D9E72B240EF1BB00409702 /* ErrorMessage.swift */,
 				96D9E7322414195500409702 /* UIHelper.swift */,
 				96D9E765241BB90400409702 /* Constants.swift */,
-				96D1F1AA241D382C001C1712 /* StringHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -225,7 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				96F7381E240C599500E85BB2 /* UIViewController+Ext.swift */,
-				96F73816240C17D600E85BB2 /* MRString.swift */,
+				96F73816240C17D600E85BB2 /* MRString+Ext.swift */,
+				96D1F1AE241FBA19001C1712 /* MRInt+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,12 +346,12 @@
 				96F7380D240921F500E85BB2 /* FavoritesListVC.swift in Sources */,
 				96F737FE2407F2B200E85BB2 /* RedditModRank.xcdatamodeld in Sources */,
 				96F7381B240C1A4D00E85BB2 /* MRBodyLabel.swift in Sources */,
+				96D1F1AF241FBA19001C1712 /* MRInt+Ext.swift in Sources */,
 				96F73828240D880400E85BB2 /* User.swift in Sources */,
 				96F7382D240D8FB400E85BB2 /* NetworkManager.swift in Sources */,
 				96D9E76E241D019800409702 /* KarmaItemVC.swift in Sources */,
-				96F73817240C17D600E85BB2 /* MRString.swift in Sources */,
+				96F73817240C17D600E85BB2 /* MRString+Ext.swift in Sources */,
 				96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */,
-				96D1F1AB241D382C001C1712 /* StringHelper.swift in Sources */,
 				96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */,
 				96F7380F2409297D00E85BB2 /* MRButton.swift in Sources */,
 				96F737F62407F2B200E85BB2 /* SceneDelegate.swift in Sources */,

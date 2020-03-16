@@ -64,8 +64,8 @@ class SubredditInfoHeaderVC: UIViewController {
         func configureUIElements() {
             avatarImageView.downloadImage(from: (subreddit.communityIcon ?? "").isEmpty ? subreddit.iconImg! : subreddit.communityIcon!)
             subredditLabel.text          = subreddit.displayName
-            createdAtLabel.text              = "Created " + StringHelper.convertNumberToDate(inputNumber: subreddit.createdUtc ?? 0)
-            subscribersCountLabel.text          = StringHelper.convertNumberToCommasString(inputNumber: subreddit.subscribers ?? 0)
+            createdAtLabel.text              = "Created " + (subreddit.createdUtc?.convertNumberToDate())!
+            subscribersCountLabel.text          = subreddit.subscribers?.convertNumberToCommasString()
             bioLabel.text               = (subreddit.publicDescription ?? "").isEmpty ?  "No public description" : subreddit.publicDescription
             bioLabel.numberOfLines      = 3
             

@@ -86,7 +86,7 @@ class UserInfoVC: UIViewController {
                 DispatchQueue.main.async {
                     self.add(childVC: MRUserInfoHeaderVC(user: user), to: self.headerView)
                     self.add(childVC: KarmaItemVC(user: user), to: self.itemViewOne)
-                    self.dateLabel.text = "Created on " + StringHelper.convertNumberToDate(inputNumber: user.createdUtc)
+                    self.dateLabel.text = "Created on " +  user.createdUtc!.convertNumberToDate()!
                 }
                 
             case .failure(let error):
