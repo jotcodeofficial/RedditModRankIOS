@@ -30,6 +30,7 @@ class ModListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO move this to the SearchVC - will stop the double errors also
         loadSubreddit(subreddit: subreddit)
         configureViewController()
         configureSubredditStatsView()
@@ -77,6 +78,22 @@ class ModListVC: UIViewController {
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func addButtonTapped() {
+        
+        // ShowLoadingView TODO
+        PersistenceManager.updateWith(favorite: subredditData, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                self.presentMRAlertOnMainThread(title: "Success", message: "You have successfully saved \(self.subredditData.displayName)", buttonTitle: "Ok")
+                return
+            }
+            
+            self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
     
     

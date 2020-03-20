@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol UserInfoVCDelegate: class {
+    func didTapRedditProfile()
+}
+
 class UserInfoVC: UIViewController {
     
     var user: User!
@@ -20,18 +24,18 @@ class UserInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureViewController()
         layoutUI()
         loadUser(username: user.name)
-     
+        
         
     }
     
     func configureViewController() {
-           view.backgroundColor = .systemBackground
-           let returnButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVC))
-           navigationItem.leftBarButtonItem = returnButton
+        view.backgroundColor = .systemBackground
+        let returnButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVC))
+        navigationItem.leftBarButtonItem = returnButton
     }
     
     func layoutUI() {
@@ -60,7 +64,7 @@ class UserInfoVC: UIViewController {
             
             dateLabel.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
             dateLabel.heightAnchor.constraint(equalToConstant: 18),
-        
+            
         ])
     }
     
@@ -82,12 +86,8 @@ class UserInfoVC: UIViewController {
             switch result {
             case .success(let user):
                 //self.user = user
-                print(user)
-                DispatchQueue.main.async {
-                    self.add(childVC: MRUserInfoHeaderVC(user: user), to: self.headerView)
-                    self.add(childVC: KarmaItemVC(user: user), to: self.itemViewOne)
-                    self.dateLabel.text = "Created on " +  user.createdUtc!.convertNumberToDate()!
-                }
+                //print(user)
+                DispatchQueue.main.async { self.configureUIElements(with: user) }
                 
             case .failure(let error):
                 
@@ -95,12 +95,31 @@ class UserInfoVC: UIViewController {
                     self.presentMRAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
                     self.dismiss(animated: true, completion: nil)
                 }
-                
             }
         }
     }
     
+    func configureUIElements(with user: User) {
+        
+        let karmaItem = KarmaItemVC(user: user)
+        karmaItem.delegate = self
+        
+        self.add(childVC: MRUserInfoHeaderVC(user: user), to: self.headerView)
+        self.add(childVC: karmaItem, to: self.itemViewOne)
+        self.dateLabel.text = "Registered on " +  user.createdUtc!.convertNumberToDate()!
+        
+    }
+}
+
+
+extension UserInfoVC: UserInfoVCDelegate {
     
-    
+    func didTapRedditProfile() {
+        guard let url = URL(string: network.baseURL + network.userOption + user.name) else {
+            presentMRAlertOnMainThread(title: "Whoops", message: "Invalid url", buttonTitle: "Ok")
+            return
+        }
+        presentSafariVC(with: url)
+    }
     
 }

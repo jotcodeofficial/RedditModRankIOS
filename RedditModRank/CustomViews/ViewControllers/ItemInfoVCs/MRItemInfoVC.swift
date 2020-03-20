@@ -16,6 +16,7 @@ class MRItemInfoVC: UIViewController {
     let actionButton    = MRButton()
     
     var user: User!
+    weak var delegate: UserInfoVCDelegate!
 
     
     init(user: User) {
@@ -30,9 +31,16 @@ class MRItemInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
+        configureActionButton()
         layoutUI()
         configureStackView()
     }
+    
+    private func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func actionButtonTapped() {}
     
     private func configureBackgroundView() {
         view.layer.cornerRadius = 18

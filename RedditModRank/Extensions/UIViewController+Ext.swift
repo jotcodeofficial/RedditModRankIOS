@@ -6,8 +6,8 @@
 //  Copyright © 2020 JotCode. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import SafariServices
 
 extension UIViewController {
     
@@ -18,6 +18,18 @@ extension UIViewController {
             alertVC.modalTransitionStyle    = .crossDissolve
             self.present(alertVC, animated: true)
         }
+    }
+    
+    func presentSafariVC(with url: URL) {
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated: true, completion: nil)
+    }
+    
+    func showEmptyState(with message: String, in view: UIView) {
+        let emptyStateView = MREmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
     }
     
 }

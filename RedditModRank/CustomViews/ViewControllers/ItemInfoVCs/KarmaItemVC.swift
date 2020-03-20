@@ -21,4 +21,8 @@ class KarmaItemVC: MRItemInfoVC {
         actionButton.set(backgroundColor: .systemGreen, title: "Visit Profile", font: UIFont.preferredFont(forTextStyle: .headline))
     }
     
+    override func actionButtonTapped() {
+        delegate.didTapRedditProfile()
+    }
+    
 }

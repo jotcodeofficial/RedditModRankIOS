@@ -12,7 +12,7 @@ class ModeratorCell: UICollectionViewCell {
     
     static let resuseID = "ModeratorCell"
     let avatarImageView = MRAvatarImageView(frame: .zero)
-    let usernameLabel = MRTitleLabel(textAlignment: .center, fontSize: 16)
+    let usernameLabel   = MRTitleLabel(textAlignment: .center, fontSize: 16)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -19,4 +19,6 @@ enum ErrorMessage: String, Error {
     case subredditDoesNotExist      = "This subreddit does not exist"
     case subredditIsPrivate         = "This subreddit is private"
     case userHasBeenSuspended       = "This user has been suspeneded"
+    case unableToFavorite           = "There was an error favoriting this subreddit. Please try again."
+    case alreadyInFavorites         = "You have already favorited this subreddit."
 }

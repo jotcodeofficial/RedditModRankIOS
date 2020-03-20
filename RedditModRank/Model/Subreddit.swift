@@ -24,7 +24,7 @@ struct SubredditResponse: Decodable {
 
 struct Subreddit: Codable, Hashable {
     var displayName: String
-    var tite: String?
+    var title: String?
     var primaryColor: String?
     var subscribers: Int?
     var quarantine: Bool?
