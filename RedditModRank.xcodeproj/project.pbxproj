@@ -13,6 +13,7 @@
 		96D1F1B12423BE2A001C1712 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B02423BE2A001C1712 /* PersistenceManager.swift */; };
 		96D1F1B32423CA99001C1712 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B22423CA99001C1712 /* FavoriteCell.swift */; };
 		96D1F1B52423D1F4001C1712 /* MREmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B42423D1F4001C1712 /* MREmptyStateView.swift */; };
+		96D1F1B8242506B4001C1712 /* MRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B7242506B4001C1712 /* MRTabBarController.swift */; };
 		96D9E72C240EF1BB00409702 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72B240EF1BB00409702 /* ErrorMessage.swift */; };
 		96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72E2412D0AA00409702 /* ModeratorCell.swift */; };
 		96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */; };
@@ -52,6 +53,7 @@
 		96D1F1B02423BE2A001C1712 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		96D1F1B22423CA99001C1712 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		96D1F1B42423D1F4001C1712 /* MREmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MREmptyStateView.swift; sourceTree = "<group>"; };
+		96D1F1B7242506B4001C1712 /* MRTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTabBarController.swift; sourceTree = "<group>"; };
 		96D9E72B240EF1BB00409702 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		96D9E72E2412D0AA00409702 /* ModeratorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeratorCell.swift; sourceTree = "<group>"; };
 		96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAvatarImageView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96D1F1B624250689001C1712 /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				96D1F1B7242506B4001C1712 /* MRTabBarController.swift */,
+			);
+			path = TabBarControllers;
+			sourceTree = "<group>";
+		};
 		96D9E72A240EF1AA00409702 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 		96F73821240C6A0700E85BB2 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				96D1F1B624250689001C1712 /* TabBarControllers */,
 				96D9E760241BAC1900409702 /* VIews */,
 				96D9E75F241BABFE00409702 /* TextFields */,
 				96D9E75E241BABF600409702 /* Buttons */,
@@ -370,6 +381,7 @@
 				96D1F1B32423CA99001C1712 /* FavoriteCell.swift in Sources */,
 				96F738152409772700E85BB2 /* ModListVC.swift in Sources */,
 				96D9E76C241CFD1A00409702 /* MRItemInfoVC.swift in Sources */,
+				96D1F1B8242506B4001C1712 /* MRTabBarController.swift in Sources */,
 				96F73826240D86E200E85BB2 /* Moderator.swift in Sources */,
 				96D9E7332414195500409702 /* UIHelper.swift in Sources */,
 				96D9E735241471E500409702 /* UserInfoVC.swift in Sources */,

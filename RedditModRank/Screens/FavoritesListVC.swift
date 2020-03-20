@@ -78,9 +78,7 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite        = favorites[indexPath.row]
-        let destVC          =  ModListVC()
-        destVC.subreddit    = favorite.displayName
-        destVC.title        = favorite.displayName
+        let destVC          =  ModListVC(subreddit: favorite.displayName)
         
         navigationController?.pushViewController(destVC, animated: true)
     }

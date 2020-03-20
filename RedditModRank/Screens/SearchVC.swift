@@ -7,6 +7,7 @@ class SearchVC: UIViewController {
     let logoImageView       = UIImageView()
     let subredditTextField   = MRTextField()
     let callToActionButton  = MRButton(backgroundColor: .systemGreen, title: "Let's Go")
+    var logoImageViewTopConstraint: NSLayoutConstraint!
 
     
     let tempUsers: [User] = []
@@ -24,6 +25,7 @@ class SearchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        subredditTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -41,9 +43,9 @@ class SearchVC: UIViewController {
             presentMRAlertOnMainThread(title: "Empty Subreddit", message: "Please  enter a subreddit to view moderators", buttonTitle: "Ok")
             return
          }
-         let modListVC       = ModListVC()
-         modListVC.subreddit = subredditTextField.text
-         modListVC.title     = subredditTextField.text
+        
+        subredditTextField.resignFirstResponder()
+         let modListVC       = ModListVC(subreddit: subredditTextField.text!)
          navigationController?.pushViewController(modListVC, animated: true)
 
     }
@@ -51,10 +53,15 @@ class SearchVC: UIViewController {
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "logo")!
+        logoImageView.image = Images.logo
+        
+        let topContraintConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80
+        
+        logoImageViewTopConstraint = logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topContraintConstant)
+        logoImageViewTopConstraint.isActive = true
         
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
             logoImageView.widthAnchor.constraint(equalToConstant: 200)

@@ -32,7 +32,7 @@ class MREmptyStateView: UIView {
         messageLabel.numberOfLines  = 3
         messageLabel.textColor      = .secondaryLabel
         
-        logoImageView.image         = UIImage(named: "logo")
+        logoImageView.image         = Images.emptyState
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

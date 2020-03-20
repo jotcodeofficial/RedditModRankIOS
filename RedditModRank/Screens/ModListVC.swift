@@ -28,6 +28,16 @@ class ModListVC: UIViewController {
     private var firstIterationGetModerators = true
     private let network = NetworkManager.shared
     
+    init(subreddit: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.subreddit  = subreddit
+        title           = subreddit
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO move this to the SearchVC - will stop the double errors also
