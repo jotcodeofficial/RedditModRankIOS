@@ -17,6 +17,7 @@ class MRUserInfoHeaderVC: UIViewController {
     let goldImageView       = UIImageView()
     let locationLabel       = MRSecondaryTitleLabel(fontSize: 18)
     let bioLabel            = MRBodyLabel(textAlignment: .left)
+    let network             = NetworkManager.shared
     
     var user: User!
     
@@ -37,16 +38,26 @@ class MRUserInfoHeaderVC: UIViewController {
     }
     
     func configureUIElements() {
-        avatarImageView.downloadImage(from: user.iconImg!)
+        setAvatarImage(userImageURLString: user.iconImg!)
         usernameLabel.text          = user.name
         nameLabel.text              = user.isGold! ? "Gold Member" : "No Gold"
         locationLabel.text          = user.verified! ? "Verified" : "Unverified"
         bioLabel.text               = (user.subreddit!.publicDescription ?? "").isEmpty ?  "No public description" : user.subreddit!.publicDescription
-        bioLabel.numberOfLines      = 3
+        bioLabel.numberOfLines      = 9
         
-        locationImageView.image     = user.verified! ? UIImage(systemName: SFSymbols.verified) : UIImage(systemName: SFSymbols.unverified)
+        locationImageView.image     = user.verified! ? SFSymbols.verified : SFSymbols.unverified
         locationImageView.tintColor = .secondaryLabel
    
+    }
+    
+    func setAvatarImage(userImageURLString: String) {
+            network.downloadImage(from: userImageURLString) { [weak self] image in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = image
+                }
+            }
     }
     
     func addSubViews() {

@@ -14,6 +14,10 @@
 		96D1F1B32423CA99001C1712 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B22423CA99001C1712 /* FavoriteCell.swift */; };
 		96D1F1B52423D1F4001C1712 /* MREmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B42423D1F4001C1712 /* MREmptyStateView.swift */; };
 		96D1F1B8242506B4001C1712 /* MRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B7242506B4001C1712 /* MRTabBarController.swift */; };
+		96D1F1BA242510D2001C1712 /* MRAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1B9242510D2001C1712 /* MRAlertContainerView.swift */; };
+		96D1F1BC24251BE3001C1712 /* MRDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1BB24251BE3001C1712 /* MRDataLoadingVC.swift */; };
+		96D1F1BE24251CA3001C1712 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1BD24251CA3001C1712 /* UIViewController+Ext.swift */; };
+		96D1F1C0242538CE001C1712 /* SubredditInfoHeaderMinimizedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D1F1BF242538CE001C1712 /* SubredditInfoHeaderMinimizedVC.swift */; };
 		96D9E72C240EF1BB00409702 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72B240EF1BB00409702 /* ErrorMessage.swift */; };
 		96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E72E2412D0AA00409702 /* ModeratorCell.swift */; };
 		96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */; };
@@ -39,7 +43,6 @@
 		96F73819240C18B300E85BB2 /* MRTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73818240C18B300E85BB2 /* MRTitleLabel.swift */; };
 		96F7381B240C1A4D00E85BB2 /* MRBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381A240C1A4D00E85BB2 /* MRBodyLabel.swift */; };
 		96F7381D240C1C3000E85BB2 /* MRAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381C240C1C3000E85BB2 /* MRAlertVC.swift */; };
-		96F7381F240C599500E85BB2 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7381E240C599500E85BB2 /* UIViewController+Ext.swift */; };
 		96F73826240D86E200E85BB2 /* Moderator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73825240D86E200E85BB2 /* Moderator.swift */; };
 		96F73828240D880400E85BB2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73827240D880400E85BB2 /* User.swift */; };
 		96F7382A240D89DC00E85BB2 /* Subreddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F73829240D89DC00E85BB2 /* Subreddit.swift */; };
@@ -54,6 +57,10 @@
 		96D1F1B22423CA99001C1712 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		96D1F1B42423D1F4001C1712 /* MREmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MREmptyStateView.swift; sourceTree = "<group>"; };
 		96D1F1B7242506B4001C1712 /* MRTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTabBarController.swift; sourceTree = "<group>"; };
+		96D1F1B9242510D2001C1712 /* MRAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAlertContainerView.swift; sourceTree = "<group>"; };
+		96D1F1BB24251BE3001C1712 /* MRDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRDataLoadingVC.swift; sourceTree = "<group>"; };
+		96D1F1BD24251CA3001C1712 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		96D1F1BF242538CE001C1712 /* SubredditInfoHeaderMinimizedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditInfoHeaderMinimizedVC.swift; sourceTree = "<group>"; };
 		96D9E72B240EF1BB00409702 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		96D9E72E2412D0AA00409702 /* ModeratorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeratorCell.swift; sourceTree = "<group>"; };
 		96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAvatarImageView.swift; sourceTree = "<group>"; };
@@ -81,7 +88,6 @@
 		96F73818240C18B300E85BB2 /* MRTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTitleLabel.swift; sourceTree = "<group>"; };
 		96F7381A240C1A4D00E85BB2 /* MRBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRBodyLabel.swift; sourceTree = "<group>"; };
 		96F7381C240C1C3000E85BB2 /* MRAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRAlertVC.swift; sourceTree = "<group>"; };
-		96F7381E240C599500E85BB2 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		96F73825240D86E200E85BB2 /* Moderator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moderator.swift; sourceTree = "<group>"; };
 		96F73827240D880400E85BB2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		96F73829240D89DC00E85BB2 /* Subreddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subreddit.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 				96F7381C240C1C3000E85BB2 /* MRAlertVC.swift */,
 				96D9E763241BB1F200409702 /* MRUserInfoHeaderVC.swift */,
 				96D1F1A7241D1CD1001C1712 /* SubredditInfoHeaderVC.swift */,
+				96D1F1BB24251BE3001C1712 /* MRDataLoadingVC.swift */,
+				96D1F1BF242538CE001C1712 /* SubredditInfoHeaderMinimizedVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -163,14 +171,15 @@
 			path = TextFields;
 			sourceTree = "<group>";
 		};
-		96D9E760241BAC1900409702 /* VIews */ = {
+		96D9E760241BAC1900409702 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				96D9E7302412ED6B00409702 /* MRAvatarImageView.swift */,
 				96D9E769241CE76000409702 /* MRItemInfoView.swift */,
 				96D1F1B42423D1F4001C1712 /* MREmptyStateView.swift */,
+				96D1F1B9242510D2001C1712 /* MRAlertContainerView.swift */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		96D9E771241D051F00409702 /* ItemInfoVCs */ = {
@@ -229,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				96D1F1B624250689001C1712 /* TabBarControllers */,
-				96D9E760241BAC1900409702 /* VIews */,
+				96D9E760241BAC1900409702 /* Views */,
 				96D9E75F241BABFE00409702 /* TextFields */,
 				96D9E75E241BABF600409702 /* Buttons */,
 				96D9E75D241BABE200409702 /* ViewControllers */,
@@ -242,9 +251,9 @@
 		96F73822240C6A3A00E85BB2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				96F7381E240C599500E85BB2 /* UIViewController+Ext.swift */,
 				96F73816240C17D600E85BB2 /* MRString+Ext.swift */,
 				96D1F1AE241FBA19001C1712 /* MRInt+Ext.swift */,
+				96D1F1BD24251CA3001C1712 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,7 +364,6 @@
 				96F7382A240D89DC00E85BB2 /* Subreddit.swift in Sources */,
 				96D1F1AD241DFA10001C1712 /* RemovedDataVC.swift in Sources */,
 				96F73819240C18B300E85BB2 /* MRTitleLabel.swift in Sources */,
-				96F7381F240C599500E85BB2 /* UIViewController+Ext.swift in Sources */,
 				96F7380B2409219F00E85BB2 /* SearchVC.swift in Sources */,
 				96D9E764241BB1F200409702 /* MRUserInfoHeaderVC.swift in Sources */,
 				96D1F1A8241D1CD1001C1712 /* SubredditInfoHeaderVC.swift in Sources */,
@@ -364,7 +372,9 @@
 				96F737F42407F2B200E85BB2 /* AppDelegate.swift in Sources */,
 				96D9E762241BAC4A00409702 /* MRSecondaryTitleLabel.swift in Sources */,
 				96F7380D240921F500E85BB2 /* FavoritesListVC.swift in Sources */,
+				96D1F1BA242510D2001C1712 /* MRAlertContainerView.swift in Sources */,
 				96F737FE2407F2B200E85BB2 /* RedditModRank.xcdatamodeld in Sources */,
+				96D1F1BE24251CA3001C1712 /* UIViewController+Ext.swift in Sources */,
 				96F7381B240C1A4D00E85BB2 /* MRBodyLabel.swift in Sources */,
 				96D1F1AF241FBA19001C1712 /* MRInt+Ext.swift in Sources */,
 				96F73828240D880400E85BB2 /* User.swift in Sources */,
@@ -375,6 +385,8 @@
 				96D9E72F2412D0AA00409702 /* ModeratorCell.swift in Sources */,
 				96D1F1B52423D1F4001C1712 /* MREmptyStateView.swift in Sources */,
 				96D9E7312412ED6B00409702 /* MRAvatarImageView.swift in Sources */,
+				96D1F1BC24251BE3001C1712 /* MRDataLoadingVC.swift in Sources */,
+				96D1F1C0242538CE001C1712 /* SubredditInfoHeaderMinimizedVC.swift in Sources */,
 				96F7380F2409297D00E85BB2 /* MRButton.swift in Sources */,
 				96F737F62407F2B200E85BB2 /* SceneDelegate.swift in Sources */,
 				96F7381D240C1C3000E85BB2 /* MRAlertVC.swift in Sources */,

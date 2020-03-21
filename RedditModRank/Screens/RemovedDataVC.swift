@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RemovedDataVC: UIViewController {
+class RemovedDataVC: MRDataLoadingVC {
 
     let network = NetworkManager.shared
     

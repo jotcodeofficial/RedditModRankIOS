@@ -19,6 +19,7 @@ class SubredditInfoHeaderVC: UIViewController {
         let commentsButton              = MRButton()
         let linksButton                 = MRButton()
         let stackView                   = UIStackView()
+        let network                     = NetworkManager.shared
         
         var subreddit: Subreddit!
         
@@ -62,16 +63,26 @@ class SubredditInfoHeaderVC: UIViewController {
         }
         
         func configureUIElements() {
-            avatarImageView.downloadImage(from: (subreddit.communityIcon ?? "").isEmpty ? subreddit.iconImg! : subreddit.communityIcon!)
+            setSubredditImage(subredditImageURLString: (subreddit.communityIcon ?? "").isEmpty ? subreddit.iconImg! : subreddit.communityIcon!)
             subredditLabel.text          = subreddit.displayName
             createdAtLabel.text              = "Created " + (subreddit.createdUtc?.convertNumberToDate())!
             subscribersCountLabel.text          = subreddit.subscribers?.convertNumberToCommasString()
             bioLabel.text               = (subreddit.publicDescription ?? "").isEmpty ?  "No public description" : subreddit.publicDescription
             bioLabel.numberOfLines      = 3
             
-            subscribersIconImageView.image     = UIImage(systemName: SFSymbols.subscribers)
+            subscribersIconImageView.image     = SFSymbols.subscribers
             subscribersIconImageView.tintColor = .secondaryLabel
        
+        }
+    
+        func setSubredditImage(subredditImageURLString: String) {
+            network.downloadImage(from: subredditImageURLString) { [weak self] image in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = image
+                }
+            }
         }
         
         func addSubViews() {

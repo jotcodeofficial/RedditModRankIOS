@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesListVC: UIViewController {
+class FavoritesListVC: MRDataLoadingVC {
     
     let tableView               = UITableView()
     var favorites: [Subreddit]  = []

@@ -13,6 +13,7 @@ class ModeratorCell: UICollectionViewCell {
     static let resuseID = "ModeratorCell"
     let avatarImageView = MRAvatarImageView(frame: .zero)
     let usernameLabel   = MRTitleLabel(textAlignment: .center, fontSize: 16)
+    let network = NetworkManager.shared
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,9 +27,14 @@ class ModeratorCell: UICollectionViewCell {
     func set(user: User) {
         usernameLabel.text = user.name
         if let iconURL = user.iconImg {
-            avatarImageView.downloadImage(from: String(iconURL.split(separator: "?")[0]))
+            network.downloadImage(from: String(iconURL.split(separator: "?")[0])) { [weak self] image in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = image
+                }
+            }
         }
-        
     }
     
     private func configure() {

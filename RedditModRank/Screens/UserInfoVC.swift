@@ -12,7 +12,7 @@ protocol UserInfoVCDelegate: class {
     func didTapRedditProfile()
 }
 
-class UserInfoVC: UIViewController {
+class UserInfoVC: MRDataLoadingVC {
     
     var user: User!
     let network = NetworkManager.shared
@@ -34,8 +34,8 @@ class UserInfoVC: UIViewController {
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
-        let returnButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVC))
-        navigationItem.leftBarButtonItem = returnButton
+        let returnButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = returnButton
     }
     
     func layoutUI() {
@@ -85,8 +85,6 @@ class UserInfoVC: UIViewController {
             
             switch result {
             case .success(let user):
-                //self.user = user
-                //print(user)
                 DispatchQueue.main.async { self.configureUIElements(with: user) }
                 
             case .failure(let error):

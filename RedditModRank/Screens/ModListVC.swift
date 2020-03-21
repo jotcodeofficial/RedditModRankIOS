@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModListVC: UIViewController {
+class ModListVC: MRDataLoadingVC {
     
     enum Section {
         case main
@@ -21,9 +21,13 @@ class ModListVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, User>!
     var isSearching: Bool = false
-    var subredditData: Subreddit!// TODO
+    var subredditData: Subreddit!
     
-    let subredditStatsView         = UIView()
+    let subredditStatsView          = UIView()
+    let subredditStatsMinimizedView = UIView()
+    var isSubredditStatsViewHidden  = false
+    
+
 
     private var firstIterationGetModerators = true
     private let network = NetworkManager.shared
@@ -44,6 +48,7 @@ class ModListVC: UIViewController {
         loadSubreddit(subreddit: subreddit)
         configureViewController()
         configureSubredditStatsView()
+        configureSubredditStatsMinimizedView()
         configureSearchController()
         configureCollectionView()
         
@@ -52,6 +57,56 @@ class ModListVC: UIViewController {
         
     }
     
+    @objc func minimizeAction(_ sender:UITapGestureRecognizer){
+        subredditStatsMinimizedView.isHidden = false
+        subredditStatsView.isHidden = true
+        // without this call the hiding and unhiding works fine - But the collectionview won't move
+        resizeCollectionView()
+        isSubredditStatsViewHidden = !isSubredditStatsViewHidden
+      }
+    
+    @objc func expandAction(_ sender:UITapGestureRecognizer){
+        subredditStatsMinimizedView.isHidden = true
+        subredditStatsView.isHidden = false
+        // without this call the hiding and unhiding works fine - But the collectionview won't move
+        resizeCollectionView()
+        isSubredditStatsViewHidden = !isSubredditStatsViewHidden
+      }
+    
+    
+    private func resizeCollectionView() {
+
+        let bottomAnchor = isSubredditStatsViewHidden ? subredditStatsView.bottomAnchor: subredditStatsMinimizedView.bottomAnchor
+    
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        
+        // This does move the collection view down
+        //collectionView.frame.origin.y = 650
+        
+        /*
+        let bottomAnchorMinContraint: NSLayoutConstraint = collectionView.topAnchor.constraint(equalTo: subredditStatsMinimizedView.bottomAnchor)
+        let bottomAnchorMaxContraint: NSLayoutConstraint = collectionView.topAnchor.constraint(equalTo: subredditStatsView.bottomAnchor)
+        if isSubredditStatsViewHidden {
+         bottomAnchorMinContraint.isActive = true
+         bottomAnchorMaxContraint.isActive = false
+       
+         collectionView.frame.origin.y = 450
+                 subredditStatsView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+            subredditStatsView.backgroundColor = .systemTeal
+        }
+        if !isSubredditStatsViewHidden {
+         bottomAnchorMinContraint.isActive = false
+         bottomAnchorMaxContraint.isActive = true
+            collectionView.frame.origin.y = 1
+                 subredditStatsMinimizedView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        }
+
+        view.layoutIfNeeded()
+ */
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,7 +119,11 @@ class ModListVC: UIViewController {
         subredditStatsView.layer.cornerRadius = 18
         subredditStatsView.backgroundColor = .secondarySystemBackground
         subredditStatsView.translatesAutoresizingMaskIntoConstraints = false
+        subredditStatsView.isHidden = isSubredditStatsViewHidden
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector (self.minimizeAction (_:)))
+        self.subredditStatsView.addGestureRecognizer(gesture)
+
         let padding: CGFloat    = 20
         
         NSLayoutConstraint.activate([
@@ -73,6 +132,33 @@ class ModListVC: UIViewController {
             subredditStatsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             subredditStatsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             subredditStatsView.heightAnchor.constraint(equalToConstant: 250),
+        
+        ])
+    }
+    
+    
+    private func configureSubredditStatsMinimizedView() {
+        
+        view.addSubview(subredditStatsMinimizedView)
+        subredditStatsMinimizedView.layer.cornerRadius = 9
+        subredditStatsMinimizedView.backgroundColor = .secondarySystemBackground
+        subredditStatsMinimizedView.translatesAutoresizingMaskIntoConstraints = false
+        subredditStatsMinimizedView.isHidden = !isSubredditStatsViewHidden
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector (self.expandAction (_:)))
+        self.subredditStatsMinimizedView.addGestureRecognizer(gesture)
+
+        self.add(childVC: SubredditInfoHeaderMinimizedVC(), to: self.subredditStatsMinimizedView)
+                  
+        
+        let padding: CGFloat    = 20
+        
+        NSLayoutConstraint.activate([
+            
+            subredditStatsMinimizedView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            subredditStatsMinimizedView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            subredditStatsMinimizedView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            subredditStatsMinimizedView.heightAnchor.constraint(equalToConstant: 30),
         
         ])
     }
@@ -117,9 +203,13 @@ class ModListVC: UIViewController {
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        
+        let bottomAnchor = isSubredditStatsViewHidden ? subredditStatsMinimizedView.bottomAnchor : subredditStatsView.bottomAnchor
+        
+        
         NSLayoutConstraint.activate([
             
-            collectionView.topAnchor.constraint(equalTo: subredditStatsView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -192,7 +282,6 @@ class ModListVC: UIViewController {
             var isThereANextPage = false
             if let newUrlId = htmlString.slice(from: leftSideOfNextPageURLValue, to: rightSideOfNextPageURLValue) {
                 isThereANextPage = true
-                print(self.network.baseURL + self.network.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
                 newUrl = URL(string: self.network.baseURL + self.network.subredditOption + self.subreddit + leftSideOfNextPageURLValue + newUrlId)
             }
             
@@ -283,7 +372,6 @@ class ModListVC: UIViewController {
     func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater   = self
-        searchController.searchBar.delegate     = self
         searchController.searchBar.placeholder  = "Search for a moderator"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController         = searchController
@@ -305,33 +393,19 @@ extension ModListVC: UICollectionViewDelegate {
     }
 }
 
-extension ModListVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension ModListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredModerators.removeAll()
+            updateData(on: finalModerators)
+            isSearching = false
             return
         }
         isSearching = true
-        filteredModerators = finalModerators.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        filteredModerators = finalModerators.filter { $0.name.lowercased().starts(with: filter.lowercased()) }
         updateData(on: filteredModerators)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isSearching = false
-        updateData(on: finalModerators)
-    }
-    
-}
-
-extension String {
-    
-    func slice(from: String, to: String) -> String? {
-        
-        return (range(of: from)?.upperBound).flatMap { substringFrom in
-            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
-                String(self[substringFrom..<substringTo])
-            }
-        }
-    }
     
 }

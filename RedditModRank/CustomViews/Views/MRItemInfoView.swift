@@ -57,16 +57,16 @@ class MRItemInfoView: UIView {
     func set(itemInfoType: ItemInfoType, withCount count: Int) {
         switch itemInfoType {
             case .commentKarma:
-                symbolImageView.image   = UIImage(systemName: SFSymbols.commentKarma)
+                symbolImageView.image   = SFSymbols.commentKarma
                 titleLabel.text         = "Comment Karma"
             case .linkKarma:
-                symbolImageView.image   = UIImage(systemName: SFSymbols.linkKarma)
+                symbolImageView.image   = SFSymbols.linkKarma
                 titleLabel.text         = "Link Karma"
             case .following:
-                symbolImageView.image   = UIImage(systemName: SFSymbols.following)
+                symbolImageView.image   = SFSymbols.following
                 titleLabel.text         = "Following"
             case .followers:
-                symbolImageView.image   = UIImage(systemName: SFSymbols.followers)
+                symbolImageView.image   = SFSymbols.followers
                 titleLabel.text         = "Followers"
         }
         countLabel.text                 = count.convertNumberToCommasString()

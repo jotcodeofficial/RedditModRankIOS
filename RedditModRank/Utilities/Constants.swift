@@ -9,21 +9,23 @@
 import UIKit
 
 enum SFSymbols {
-    static let location     = "mappin.and.ellipse"
-    static let verified     = "checkmark.shield"
-    static let unverified   = "xmark.shield"
-    static let gold         = "star"
-    static let noGold       = "star.slash"
-    static let commentKarma = "text.bubble"
-    static let linkKarma    = "text.quote"
-    static let followers    = "heart"
-    static let following    = "person.2"
-    static let subscribers  = "person.3"
+    static let location     = UIImage(systemName: "mappin.and.ellipse")
+    static let verified     = UIImage(systemName: "checkmark.shield")
+    static let unverified   = UIImage(systemName: "xmark.shield")
+    static let gold         = UIImage(systemName: "star")
+    static let noGold       = UIImage(systemName: "star.slash")
+    static let commentKarma = UIImage(systemName: "text.bubble")
+    static let linkKarma    = UIImage(systemName: "text.quote")
+    static let followers    = UIImage(systemName: "heart")
+    static let following    = UIImage(systemName: "person.2")
+    static let subscribers  = UIImage(systemName: "person.3")
+    static let expand       = UIImage(systemName: "rectangle.expand.vertical")
 }
 
 enum Images {
-    static let logo = UIImage(named: "logo")
-    static let emptyState = UIImage(named: "empty-state-logo")?.withTintColor(.systemGray4)
+    static let logo                 = UIImage(named: "logo")
+    static let emptyState           = UIImage(named: "empty-state-logo")?.withTintColor(.systemGray4)
+    static let avatarPlaceholder    = UIImage(named: "avatar-placeholder")
 }
 
 
