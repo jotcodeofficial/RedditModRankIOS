@@ -25,9 +25,12 @@ class ModListVC: MRDataLoadingVC {
     
     let subredditStatsView          = UIView()
     let subredditStatsMinimizedView = UIView()
-    var isSubredditStatsViewHidden  = false
-    
-
+  
+    private var containerViewHeight: NSLayoutConstraint!
+    var innerMinView = UIView()
+    var innerMaxView = UIView()
+    var mainContainerView = UIView()
+    var isViewTapped = false
 
     private var firstIterationGetModerators = true
     private let network = NetworkManager.shared
@@ -47,9 +50,10 @@ class ModListVC: MRDataLoadingVC {
         // TODO move this to the SearchVC - will stop the double errors also
         loadSubreddit(subreddit: subreddit)
         configureViewController()
-        configureSubredditStatsView()
-        configureSubredditStatsMinimizedView()
         configureSearchController()
+        configureMaxContainerView()
+        configureInnerMinView()
+        configureInnerMaxView()
         configureCollectionView()
         
         getModerators(url: URL(string: network.baseURL + network.subredditOption + subreddit + network.endSubModeratorsOption)!)
@@ -57,56 +61,64 @@ class ModListVC: MRDataLoadingVC {
         
     }
     
-    @objc func minimizeAction(_ sender:UITapGestureRecognizer){
-        subredditStatsMinimizedView.isHidden = false
-        subredditStatsView.isHidden = true
-        // without this call the hiding and unhiding works fine - But the collectionview won't move
-        resizeCollectionView()
-        isSubredditStatsViewHidden = !isSubredditStatsViewHidden
-      }
     
-    @objc func expandAction(_ sender:UITapGestureRecognizer){
-        subredditStatsMinimizedView.isHidden = true
-        subredditStatsView.isHidden = false
-        // without this call the hiding and unhiding works fine - But the collectionview won't move
-        resizeCollectionView()
-        isSubredditStatsViewHidden = !isSubredditStatsViewHidden
-      }
-    
-    
-    private func resizeCollectionView() {
+    @objc private func containerViewTapped() {
+        isViewTapped.toggle()
+        containerViewHeight.constant = self.isViewTapped ? 30 : 250
 
-        let bottomAnchor = isSubredditStatsViewHidden ? subredditStatsView.bottomAnchor: subredditStatsMinimizedView.bottomAnchor
+        print(self.isViewTapped)
+        self.innerMinView.isHidden = !self.isViewTapped
+        self.subredditStatsView.isHidden = self.isViewTapped
+       }
     
+    private func configureMaxContainerView() {
+         mainContainerView = UIView()
+         mainContainerView.translatesAutoresizingMaskIntoConstraints = false
+         mainContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(containerViewTapped)))
+         view.addSubview(mainContainerView)
+
+         containerViewHeight = mainContainerView.heightAnchor.constraint(equalToConstant: 250)
+         containerViewHeight.isActive = true
+
+         NSLayoutConstraint.activate([
+             mainContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+             mainContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+             mainContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+         ])
+     }
+    
+    
+    private func configureInnerMaxView() {
+
+        subredditStatsView.layer.cornerRadius = 18
+        subredditStatsView.backgroundColor = .secondarySystemBackground
+        subredditStatsView.translatesAutoresizingMaskIntoConstraints = false
+        mainContainerView.addSubview(subredditStatsView)
+
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: bottomAnchor),
+            subredditStatsView.widthAnchor.constraint(equalTo: mainContainerView.widthAnchor),
+            subredditStatsView.heightAnchor.constraint(equalTo: mainContainerView.heightAnchor),
+            subredditStatsView.centerXAnchor.constraint(equalTo: mainContainerView.centerXAnchor),
+            subredditStatsView.centerYAnchor.constraint(equalTo: mainContainerView.centerYAnchor)
         ])
         
-        // This does move the collection view down
-        //collectionView.frame.origin.y = 650
-        
-        /*
-        let bottomAnchorMinContraint: NSLayoutConstraint = collectionView.topAnchor.constraint(equalTo: subredditStatsMinimizedView.bottomAnchor)
-        let bottomAnchorMaxContraint: NSLayoutConstraint = collectionView.topAnchor.constraint(equalTo: subredditStatsView.bottomAnchor)
-        if isSubredditStatsViewHidden {
-         bottomAnchorMinContraint.isActive = true
-         bottomAnchorMaxContraint.isActive = false
-       
-         collectionView.frame.origin.y = 450
-                 subredditStatsView.heightAnchor.constraint(equalToConstant: 250).isActive = true
-            subredditStatsView.backgroundColor = .systemTeal
-        }
-        if !isSubredditStatsViewHidden {
-         bottomAnchorMinContraint.isActive = false
-         bottomAnchorMaxContraint.isActive = true
-            collectionView.frame.origin.y = 1
-                 subredditStatsMinimizedView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        }
-
-        view.layoutIfNeeded()
- */
-        
     }
+    
+    private func configureInnerMinView() {
+      
+        subredditStatsMinimizedView.layer.cornerRadius = 9
+        subredditStatsMinimizedView.backgroundColor = .secondarySystemBackground
+        subredditStatsMinimizedView.translatesAutoresizingMaskIntoConstraints = false
+        mainContainerView.addSubview(subredditStatsMinimizedView)
+       
+        NSLayoutConstraint.activate([
+            subredditStatsMinimizedView.widthAnchor.constraint(equalTo: mainContainerView.widthAnchor),
+            subredditStatsMinimizedView.heightAnchor.constraint(equalTo: mainContainerView.heightAnchor),
+            subredditStatsMinimizedView.centerXAnchor.constraint(equalTo: mainContainerView.centerXAnchor),
+            subredditStatsMinimizedView.centerYAnchor.constraint(equalTo: mainContainerView.centerYAnchor)
+        ])
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -119,7 +131,9 @@ class ModListVC: MRDataLoadingVC {
         subredditStatsView.layer.cornerRadius = 18
         subredditStatsView.backgroundColor = .secondarySystemBackground
         subredditStatsView.translatesAutoresizingMaskIntoConstraints = false
-        subredditStatsView.isHidden = isSubredditStatsViewHidden
+        
+        containerViewHeight = subredditStatsView.heightAnchor.constraint(equalToConstant: 250)
+        containerViewHeight.isActive = true
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector (self.minimizeAction (_:)))
         self.subredditStatsView.addGestureRecognizer(gesture)
@@ -131,35 +145,6 @@ class ModListVC: MRDataLoadingVC {
             subredditStatsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             subredditStatsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             subredditStatsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            subredditStatsView.heightAnchor.constraint(equalToConstant: 250),
-        
-        ])
-    }
-    
-    
-    private func configureSubredditStatsMinimizedView() {
-        
-        view.addSubview(subredditStatsMinimizedView)
-        subredditStatsMinimizedView.layer.cornerRadius = 9
-        subredditStatsMinimizedView.backgroundColor = .secondarySystemBackground
-        subredditStatsMinimizedView.translatesAutoresizingMaskIntoConstraints = false
-        subredditStatsMinimizedView.isHidden = !isSubredditStatsViewHidden
-        
-        let gesture = UITapGestureRecognizer(target: self, action: #selector (self.expandAction (_:)))
-        self.subredditStatsMinimizedView.addGestureRecognizer(gesture)
-
-        self.add(childVC: SubredditInfoHeaderMinimizedVC(), to: self.subredditStatsMinimizedView)
-                  
-        
-        let padding: CGFloat    = 20
-        
-        NSLayoutConstraint.activate([
-            
-            subredditStatsMinimizedView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            subredditStatsMinimizedView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            subredditStatsMinimizedView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            subredditStatsMinimizedView.heightAnchor.constraint(equalToConstant: 30),
-        
         ])
     }
     
@@ -200,16 +185,11 @@ class ModListVC: MRDataLoadingVC {
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(ModeratorCell.self, forCellWithReuseIdentifier: ModeratorCell.resuseID)
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        let bottomAnchor = isSubredditStatsViewHidden ? subredditStatsMinimizedView.bottomAnchor : subredditStatsView.bottomAnchor
-        
         
         NSLayoutConstraint.activate([
             
-            collectionView.topAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: mainContainerView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

@@ -26,10 +26,6 @@ class SubredditInfoHeaderMinimizedVC: UIViewController {
         layoutUI()
     }
     
-    
-    
-    
-    
     func addSubViews() {
         view.addSubview(expandImageView)
     }
@@ -38,11 +34,11 @@ class SubredditInfoHeaderMinimizedVC: UIViewController {
         expandImageView.translatesAutoresizingMaskIntoConstraints = false
         expandImageView.image = SFSymbols.expand?.withTintColor(.systemTeal)
         
-        expandImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        expandImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        
-        
+        NSLayoutConstraint.activate([
+            expandImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            expandImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+
     }
     
     

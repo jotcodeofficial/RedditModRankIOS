@@ -20,6 +20,7 @@ class SubredditInfoHeaderVC: UIViewController {
         let linksButton                 = MRButton()
         let stackView                   = UIStackView()
         let network                     = NetworkManager.shared
+
         
         var subreddit: Subreddit!
         
