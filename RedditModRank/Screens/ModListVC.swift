@@ -125,28 +125,7 @@ class ModListVC: MRDataLoadingVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    private func configureSubredditStatsView() {
-        
-        view.addSubview(subredditStatsView)
-        subredditStatsView.layer.cornerRadius = 18
-        subredditStatsView.backgroundColor = .secondarySystemBackground
-        subredditStatsView.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerViewHeight = subredditStatsView.heightAnchor.constraint(equalToConstant: 250)
-        containerViewHeight.isActive = true
-        
-        let gesture = UITapGestureRecognizer(target: self, action: #selector (self.minimizeAction (_:)))
-        self.subredditStatsView.addGestureRecognizer(gesture)
-
-        let padding: CGFloat    = 20
-        
-        NSLayoutConstraint.activate([
-            
-            subredditStatsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            subredditStatsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            subredditStatsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-        ])
-    }
+    
     
     func add(childVC: UIViewController, to containerView: UIView) {
         addChild(childVC)

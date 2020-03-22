@@ -41,11 +41,4 @@ class SubredditInfoHeaderMinimizedVC: UIViewController {
 
     }
     
-    
-    
-    
-    
-    
-    
-    
 }
