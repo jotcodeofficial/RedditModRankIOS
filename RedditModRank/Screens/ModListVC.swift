@@ -165,10 +165,11 @@ class ModListVC: MRDataLoadingVC {
         collectionView.backgroundColor = .systemBackground
         collectionView.register(ModeratorCell.self, forCellWithReuseIdentifier: ModeratorCell.resuseID)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let padding: CGFloat = 5
         
         NSLayoutConstraint.activate([
             
-            collectionView.topAnchor.constraint(equalTo: mainContainerView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: mainContainerView.bottomAnchor, constant: padding),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
